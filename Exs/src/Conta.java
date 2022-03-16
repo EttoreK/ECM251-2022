@@ -7,7 +7,7 @@ public class Conta {
 
     //Métodos da classe
     void visualizarSaldo(){
-        System.out.println("Saldo atual na conta " + numero+ ": R$" + saldo);
+        System.out.println("Saldo atual na conta " + numero + ": R$" + saldo);
     }
     boolean depositar(double valor){
         // if(valor > 0){
