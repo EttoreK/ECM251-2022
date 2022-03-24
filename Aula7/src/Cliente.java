@@ -1,4 +1,4 @@
-public class Cliente {
+public class Cliente{
     private String cpf;
     private String nome;
     private String email;
@@ -27,6 +27,7 @@ public class Cliente {
     public String getCpf(){
         return cpf;
     }
+
     public String getEmail(){
         return email;
     }
@@ -34,6 +35,4 @@ public class Cliente {
     public void setEmail(String email){
         this.email = email;
     }
-    
-
 }
