@@ -11,5 +11,6 @@ public class App{
         System.out.println("" + ValidaCPF.validar("52998224725"));
         System.out.println("" + ValidaCPF.validar("52998224735"));
         System.out.println("" + ValidaCPF.validar("52998224726"));
+        System.out.println("" + ValidaCPF.validar("12"));
     }
 }
