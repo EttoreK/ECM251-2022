@@ -7,6 +7,8 @@ public class TestDrive{
         d1.rodar();
         System.out.println("Face atual: " + d1.faceAtual());
 
+        // change mudança
+
         Dado d2 = new DadoD6("3473");
         System.out.println("Criado Dado D6: " + d2);
         System.out.println("Face atual: " + d2.faceAtual());
