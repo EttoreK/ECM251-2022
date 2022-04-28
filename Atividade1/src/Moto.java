@@ -1,6 +1,6 @@
 public class Moto extends RecursosDeLocomocao{
-    public Moto(String id) {
-        super(id);
+    public Moto(String usuario) {
+        super(usuario);
     }
 
     @Override

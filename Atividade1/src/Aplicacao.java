@@ -7,14 +7,17 @@ public class Aplicacao {
     }
 
     public static void Trocar(String v){
+        RecursosDeLocomocao v1 = new RecursosDeLocomocao("cleber");
         if (v == "Moto"){
-            RecursosDeLocomocao v1 = new Moto("Cleber");
+            v1 = new Moto("Cleber");
         } else if (v == "Carro"){
-            RecursosDeLocomocao v1 = new Carro("Cleber");
+            v1 = new Carro("Cleber");
         } else if (v == "Patinete"){
-            RecursosDeLocomocao v1 = new Patinete("Cleber");
+            v1 = new Patinete("Cleber");
         } else if (v == "Bicicleta"){
-            RecursosDeLocomocao v1 = new Bicicleta("Cleber");
+            v1 = new Bicicleta("Cleber");
+        } else if(v == v1.getTipo()){
+            System.out.println("Troca não faz sentido");
         } else{
             System.out.println("Erro");
         }     

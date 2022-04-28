@@ -1,6 +1,6 @@
 public class Carro extends RecursosDeLocomocao{
-    public Carro(String id) {
-        super(id);
+    public Carro(String usuario) {
+        super(usuario);
     }
 
     @Override

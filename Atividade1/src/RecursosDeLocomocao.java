@@ -4,7 +4,7 @@ public class RecursosDeLocomocao{
     private int id;
     protected double custohora;
     protected String tipo;
-    protected String usuario;
+    private String usuario;
 
     public RecursosDeLocomocao(String usuario){
         this.usuario = usuario;
@@ -27,10 +27,14 @@ public class RecursosDeLocomocao{
 
     @Override
     public String toString(){
-        return "Alugas\nid da operaçao: " + id + "\nUsuario: " + usuario + "\nVeiculo escolhido: " + tipo + "\nCusto por hora: " + custohora;
+        return "Alugas\nid da operaçao: " + id + "\nUsuario: " + usuario + "\nVeiculo escolhido: " + tipo + "\nCusto por hora: " + custohora + "\n\n";
     }
 
     public void testar(){
         System.out.println(toString());
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 }

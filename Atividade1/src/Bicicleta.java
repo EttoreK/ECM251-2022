@@ -1,6 +1,6 @@
 public class Bicicleta extends RecursosDeLocomocao{
-    public Bicicleta(String id) {
-        super(id);
+    public Bicicleta(String usuario) {
+        super(usuario);
     }
 
     @Override

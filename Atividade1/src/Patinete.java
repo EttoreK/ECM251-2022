@@ -1,6 +1,6 @@
 public class Patinete extends RecursosDeLocomocao{
-    public Patinete(String id) {
-        super(id);
+    public Patinete(String usuario) {
+        super(usuario);
     }
 
     @Override
