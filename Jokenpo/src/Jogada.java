@@ -1,18 +1,21 @@
 public class Jogada{
-	private String venco;
+	private final EnumJogadas venco1;
+	private final EnumJogadas venco2;
 
-	public Jogada(String venco){
-		this.venco = venco;
+	public Jogada(EnumJogadas venco1, EnumJogadas venco2){
+		this.venco1 = venco1;
+		this.venco2 = venco2;
 	}
 
 	public boolean verificarVenceu(Jogada jogada){
-		if(jogada.getTipo().equals(venco)){
+		if(jogada.getTipo().equals(venco1) || jogada.getTipo().equals(venco2)){
 			return true;
 		}
 		return false;
 	}
 
-	public String getTipo(){
-		return "Jogada";
+	public EnumJogadas getTipo(){
+		return EnumJogadas.LAGARTO;
 	}
+
 }
