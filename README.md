@@ -37,6 +37,13 @@ git commit -m  "mensagem"
 git push
 ```
 
+- Criar repositórios por linha de Comando
+```bash 
+git branch -M main
+git remote add origin https://github.com/nomeusuario/nomerepositorio.git
+git push -u origin main
+```
+
 - Verificar Status
 ```bash
 git status
