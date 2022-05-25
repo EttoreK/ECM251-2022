@@ -1,5 +1,5 @@
 public class Bicicleta extends RecursosDeLocomocao{
-    public Bicicleta(String usuario) {
+    public Bicicleta(String usuario){
         super(usuario);
     }
 

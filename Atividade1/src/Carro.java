@@ -1,5 +1,5 @@
 public class Carro extends RecursosDeLocomocao{
-    public Carro(String usuario) {
+    public Carro(String usuario){
         super(usuario);
     }
 

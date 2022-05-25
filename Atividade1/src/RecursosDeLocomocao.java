@@ -34,7 +34,7 @@ public class RecursosDeLocomocao{
         System.out.println(toString());
     }
 
-    public String getTipo() {
+    public String getTipo(){
         return tipo;
     }
 }
