@@ -19,6 +19,9 @@ final class Sistema{
 
         Sistema.trocaTurno();
 
+        membros.remove(1);
+        membros.remove(1);
+
         Sistema.postarMensagem();
 
         System.out.println("\nEncerrado o Sistema\n");
