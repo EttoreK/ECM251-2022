@@ -24,7 +24,7 @@ final class Sistema{
 
         Sistema.postarMensagem();
 
-        System.out.println("\nEncerrado o Sistema\n");
+        System.out.println("Encerrado o Sistema\n");
     }
 
     public static void setTurno(EnumTurnos turno){
@@ -38,6 +38,7 @@ final class Sistema{
             Sistema.turno = EnumTurnos.REGULAR;
         }
     }
+    
     public static void postarMensagem(){
         System.out.println("Turno: " + getTurno());
         for(Membro membro : Sistema.membros){
