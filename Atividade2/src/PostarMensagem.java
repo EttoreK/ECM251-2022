@@ -1,3 +1,3 @@
 public interface PostarMensagem{
-    public void postarMensagem(String mensagem);
+    public void postarMensagem();
 }

@@ -1,12 +1,15 @@
 public class HeavyLifters extends Membro {
 
     public HeavyLifters(String usuario, String email){
-        super(usuario, email, "HeavyLifters");
+        super(usuario, email, EnumTipoMembros.HEAVYLIFTERS);
     }
 
     @Override
-    public void postarMensagem(String mensagem){
-        String assinatura = Sistema.getTurno();
-        System.out.println(mensagem + "\n" + assinatura + "\n" );
+    public void postarMensagem(){
+        if(Sistema.getTurno() == EnumTurnos.REGULAR){
+            System.out.println("Podem contar conosco!" + "\n");
+        } else{
+            System.out.println("N00b_qu3_n_Se_r3pita.bat" + "\n");
+        }
     }
 }
