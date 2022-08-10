@@ -1,0 +1,3 @@
+public enum EnumTipoMembros{
+    BIGBROTHERS, HEAVYLIFTERS, MOBILEMAMBERS, SCRIPTGUYS;
+}
