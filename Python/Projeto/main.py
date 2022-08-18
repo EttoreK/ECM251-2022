@@ -1,5 +1,5 @@
-from .loja.produto import Produto
-from .loja.carrinho import Carrinho
+from produto import Produto
+from carrinho import Carrinho
 
 item1 = Produto(199, 'Dark Souls')
 item2 = Produto(
