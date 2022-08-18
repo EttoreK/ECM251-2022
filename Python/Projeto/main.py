@@ -1,8 +1,8 @@
-from item import Item
-from carrinho import Carrinho
+from .loja.produto import Produto
+from .loja.carrinho import Carrinho
 
-item1 = Item(199, 'Dark Souls')
-item2 = Item(
+item1 = Produto(199, 'Dark Souls')
+item2 = Produto(
     preco = 199, 
     nome = 'Dark Souls',
     descricao = 'Sofra'

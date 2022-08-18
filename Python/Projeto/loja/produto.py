@@ -1,4 +1,4 @@
-class Item():
+class Produto():
     def __init__(self, preco, nome, descricao = None):
         self._nome = nome
         self._preco = preco
