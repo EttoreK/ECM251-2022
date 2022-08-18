@@ -8,7 +8,7 @@ item2 = Produto(
     descricao = 'Sofra'
     )
 
-carrinho = Carrinho()
+carrinho = Carrinho
 
 carrinho.adicionar(item = item1)
 carrinho.adicionar(item = item2)
