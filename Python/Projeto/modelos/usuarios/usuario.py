@@ -1,3 +1,9 @@
-class Usuario():
-    def __init__(self, id, nome, telefone, email, contas) -> None:
-        pass
+class Usuario:
+    def __init__(self, user_name, password, email):
+        self._user_name = user_name
+        self._password = password
+        self._email = email
+    def get_user_name(self):
+        return self._user_name
+    def check_password(self, passw):
+        return passw == self._password

@@ -1,6 +1,6 @@
 from produto import Produto
 
-class Carrinho():
+class Carrinho:
     def __init__(self):
         self._item = []
 
