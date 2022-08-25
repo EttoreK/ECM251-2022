@@ -1,12 +1,17 @@
 #programa que escreve em um arquivo
 
-arqv = open("data/dados.txt", "a")
-continuar = True
+from logging import exception
 
-while continuar:
-    time = input("Time: [Vazio para sair]")
-    if not time:
-        continuar = False
-        continue
-    arqv.write(time+'\n')
-arqv.close()
+try:
+    arqv = open("data/dados.txt", "a")
+    continuar = True
+
+    while continuar:
+        time = input("Time: [Vazio para sair]")
+        if not time:
+            continuar = False
+            continue
+        arqv.write(time+'\n')
+    arqv.close()
+except:
+    print("Algo de errado ocorreu")
