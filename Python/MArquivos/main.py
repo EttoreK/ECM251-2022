@@ -13,5 +13,9 @@ try:
             continue
         arqv.write(time+'\n')
     arqv.close()
+except FileNotFoundError:
+    print("Arquivo ou Diretório não encontrado")
 except:
     print("Algo de errado ocorreu")
+finally:
+    print("Fim da execução")
