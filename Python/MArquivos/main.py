@@ -1,6 +1,6 @@
 #programa que escreve em um arquivo
 
-arqv = open("dados.txt", "a")
+arqv = open("data/dados.txt", "a")
 continuar = True
 
 while continuar:
