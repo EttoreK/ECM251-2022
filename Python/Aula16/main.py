@@ -5,6 +5,7 @@ def run_system():
 	doc1 = Document()
 	doc2 = EMail(to='email@sim', authors=["Eu"])
 	doc3 = Book(title="Design", authors=["Eric", "John", "Ralph", "Ricardão"])
+	
 	print(doc2.get_authors())
 	print(doc3)
 
