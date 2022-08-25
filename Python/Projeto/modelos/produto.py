@@ -1,4 +1,4 @@
-class Item():
+class Produto:
     def __init__(self, preco, nome, descricao = None):
         self._nome = nome
         self._preco = preco
@@ -17,6 +17,6 @@ class Item():
         return f'Nome: {self._nome} Preço: R${self._preco}'
 
     def __eq__(self, __o: object) -> bool:
-        if isinstance(__o, Item):
+        if isinstance(__o, Produto):
             return self._nome == __o.get_nome()
         return False

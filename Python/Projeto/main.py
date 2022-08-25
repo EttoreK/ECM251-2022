@@ -1,14 +1,14 @@
-from item import Item
+from produto import Produto
 from carrinho import Carrinho
 
-item1 = Item(199, 'Dark Souls')
-item2 = Item(
+item1 = Produto(199, 'Dark Souls')
+item2 = Produto(
     preco = 199, 
     nome = 'Dark Souls',
     descricao = 'Sofra'
     )
 
-carrinho = Carrinho()
+carrinho = Carrinho
 
 carrinho.adicionar(item = item1)
 carrinho.adicionar(item = item2)

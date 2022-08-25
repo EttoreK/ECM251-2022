@@ -1,14 +1,13 @@
-from .item import Item
+from produto import Produto
 
-
-class Carrinho():
+class Carrinho:
     def __init__(self):
         self._item = []
 
     def get_valor_total(self):
         total = 0
         for item in self._item:
-            total += Item.get_preco()
+            total += item.get_preco()
         return total
 
     def get_tamanho(self):
