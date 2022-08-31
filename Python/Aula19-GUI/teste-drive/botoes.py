@@ -15,10 +15,18 @@ def acao_botao():
 	print("Click!")
 
 #criando um botão
-ttk.Button(
+bot1 = ttk.Button(
 	base,
-	text="ola mundo",
+	text="Olá Mundo",
 	bootstyle="default",
+	command=acao_botao
+).pack(side=LEFT, padx=10, pady=5)
+
+#criando botão 2
+bot2 = ttk.Button(
+	base,
+	text="2º Botão",
+	bootstyle=(DANGER, OUTLINE),
 	command=acao_botao
 ).pack(side=LEFT, padx=10, pady=5)
 
