@@ -1,18 +1,20 @@
 from cgitb import text
+from tkinter.ttk import Style
+from turtle import color
 from unittest.mock import DEFAULT
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from tkinter import PhotoImage
 
 class MinhaUI():
     def _construir_base(self):
         janela = ttk.Window(
-            title="Minha GUI Mauá",
+            title="Loja Games Games",
             size= (1024,400),
             position= (100,100),
             minsize= (600,300),
             maxsize= (1800,900),
             alpha=1.0,
+            themename='superhero',
             iconphoto='calculator.png'
         )
         return janela
@@ -38,6 +40,7 @@ class MinhaUI():
         self.valor_digitado = ""
         self.text = self._criar_texto(guardar=self.valor_digitado)
         self.text.grid(row=2, column=1, padx=5, pady=5)
+    
     def run(self):
         self.base.mainloop()
 
