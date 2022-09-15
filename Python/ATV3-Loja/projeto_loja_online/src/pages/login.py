@@ -1,5 +1,5 @@
 from pickle import TRUE
-from turtle import onclick
+from turtle import goto
 import streamlit as st
 from controllers.user_controller import UserController
 
@@ -31,7 +31,7 @@ Stts = ""
 if(password!="" and user_name!=""):
     Stts = UserController.login(user_name, password)
     if(Stts == "L"):
-        st.caption("Entrou")
+        st.caption("Entrando")
     else:
         st.caption("Usuário ou senha incorretos")
 else:
