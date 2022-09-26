@@ -1,4 +1,5 @@
 import streamlit as st
+from src.controllers.cart_controller import CartController
 from src.models.product import Product
 from src.controllers.user_controller import UserController
 from src.models.cart import Cart
@@ -13,9 +14,12 @@ with tab1:
 	st.header("Início")
 	
 	# Painel lateral
+	global Kart
 	Kart = Cart()
-	product1 = Product("Pokemon", 400.00, "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/aGhopp3MHppi7kooGE2Dtt8C.png")
-	product2 = Product("Yugioh", 40.00, "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/aGhopp3MHppi7kooGE2Dtt8C.png")
+	product1 = Product("Pokemon", 400.00, "imgs/pkm.jpg")
+	product2 = Product("Yugioh", 40.00, "imgs/ygo.jpg")
+	product3 = Product("NoHero", 120.00, "imgs/mha.jpg")
+	product4 = Product("Digimon", 9.00, "imgs/dgm.jpg")
 
 	# mostruario
 	st.markdown("###### Pókemon")
@@ -23,14 +27,15 @@ with tab1:
 	st.markdown("#### R$ 400,00 \r mais de 1000 episódios para assistir")
 
 	col1, col2, col3 = st.columns(3,gap="large")
-    
+	
 	with col1:
 			c = st.container()
 			c.markdown("###### Yu-Gi-Oh! Duel Monsters")
 			c.image("imgs/ygo.jpg", width=200)
 			c.markdown("\r#### R$ 40,00")
 			c.markdown("#### 224 episódios para assistir")
-			c.button(label = "Adicionar", key = 1, on_click = Kart.adicionar(item = product1))
+			if c.button(label = "Adicionar", key = 1, on_click = Cart.adicionar, args = (Kart,product2)):
+				Kart.adicionar(product2)
 
 	with col2:
 			c = st.container()
@@ -38,7 +43,8 @@ with tab1:
 			c.image("imgs/mha.jpg", width=200)
 			c.markdown("\r#### R$ 120,00")
 			c.markdown("#### 113 episódios para assistir")
-			c.button(label = "Adicionar", key = 2, on_click = Kart.adicionar(item = product1))
+			if c.button(label = "Adicionar", key = 2, on_click = Cart.adicionar, args = (Kart,product3)):
+				Kart.adicionar(product3)
 
 	with col3:
 			c = st.container()
@@ -46,7 +52,8 @@ with tab1:
 			c.image("imgs/dgm.jpg", width=200)
 			c.markdown("\r\n#### R$ 9,00")
 			c.markdown("#### Vários episódios para assistir")
-			c.button(label = "Adicionar", key = 3, on_click = Kart.adicionar(item = product1))
+			if c.button(label = "Adicionar", key = 3, on_click = Cart.adicionar, args = (Kart,product4)):
+				Kart.adicionar(product4)
 
 with tab2:
 	user = ''
@@ -89,15 +96,22 @@ with tab2:
 		st.button(label= "Sair", key = 5, on_click= UserController.logout)
 
 with tab3:
-	def prodprec():
-		col1, col2 = st.columns(2)
+	def prodprec(int):
 		c = st.container()
 		for i in Kart.get_prod():
-			with col1:
+			if int == 0:
 				c.markdown(i.get_name())
-			with col2:
+			elif int == 1:
 				c.markdown(i.get_price())
+			elif int == 2:
+				c.image(i.get_url(), width=100)
 		return c
 
 	st.header("Carrinho")
-	st.button(label= "Prod", key = 6, on_click = prodprec)
+	col1, col2, col3 = st.columns(3)
+	with col1:
+		prodprec(0)
+	with col2:
+		prodprec(1)
+	with col3:
+		prodprec(2)
