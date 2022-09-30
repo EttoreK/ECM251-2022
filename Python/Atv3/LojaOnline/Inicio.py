@@ -1,11 +1,14 @@
 import streamlit as st
 from src.controllers.cart_controller import CartController
-from src.models.product import Product
 from src.controllers.user_controller import UserController
-from src.models.cart import Cart
+from src.controllers.product_controller import ProductController
 
 with open("src/style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>",unsafe_allow_html=True)
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+
+p_contr = ProductController()
+st.session_state['Cart'] = CartController()
+Kart = st.session_state['Cart']
 
 tab1, tab2, tab3 = st.tabs(["Início", "Perfil", "Carrinho"])
 
@@ -14,12 +17,6 @@ with tab1:
 	st.header("Início")
 	
 	# Painel lateral
-	global Kart
-	Kart = Cart()
-	product1 = Product("Pokemon", 400.00, "imgs/pkm.jpg")
-	product2 = Product("Yugioh", 40.00, "imgs/ygo.jpg")
-	product3 = Product("NoHero", 120.00, "imgs/mha.jpg")
-	product4 = Product("Digimon", 9.00, "imgs/dgm.jpg")
 
 	# mostruario
 	st.markdown("###### Pókemon")
@@ -29,32 +26,37 @@ with tab1:
 	col1, col2, col3 = st.columns(3,gap="large")
 	
 	with col1:
-			c = st.container()
-			c.markdown("###### Yu-Gi-Oh! Duel Monsters")
-			c.image("imgs/ygo.jpg", width=200)
-			c.markdown("\r#### R$ 40,00")
-			c.markdown("#### 224 episódios para assistir")
-			if c.button(label = "Adicionar", key = 1, on_click = Cart.adicionar, args = (Kart,product2)):
-				Kart.adicionar(product2)
+		prdct = p_contr.get_product(1)
+		c = st.container()
+		c.markdown("###### Yu-Gi-Oh! Duel Monsters")
+		c.image("imgs/ygo.jpg", width=200)
+		c.markdown("\r#### R$ 40,00")
+		c.markdown("#### 224 episódios para assistir")
+		if c.button(label = "Adicionar", key = 1, on_click = CartController.add_product, args = (Kart,prdct)):
+			Kart.add_product(prdct)
+			
 
 	with col2:
-			c = st.container()
-			c.markdown("###### My hero Academia")
-			c.image("imgs/mha.jpg", width=200)
-			c.markdown("\r#### R$ 120,00")
-			c.markdown("#### 113 episódios para assistir")
-			if c.button(label = "Adicionar", key = 2, on_click = Cart.adicionar, args = (Kart,product3)):
-				Kart.adicionar(product3)
+		prdct = p_contr.get_product(2)
+		print(prdct)
+		c = st.container()
+		c.markdown("###### My hero Academia")
+		c.image("imgs/mha.jpg", width=200)
+		c.markdown("\r#### R$ 120,00")
+		c.markdown("#### 113 episódios para assistir")
+		if c.button(label = "Adicionar", key = 2, on_click = CartController.add_product, args = (Kart,prdct)):
+			Kart.add_product(prdct)
 
 	with col3:
-			c = st.container()
-			c.markdown("###### Digimon")
-			c.image("imgs/dgm.jpg", width=200)
-			c.markdown("\r\n#### R$ 9,00")
-			c.markdown("#### Vários episódios para assistir")
-			if c.button(label = "Adicionar", key = 3, on_click = Cart.adicionar, args = (Kart,product4)):
-				Kart.adicionar(product4)
-
+		prdct = p_contr.get_product(3)
+		c = st.container()
+		c.markdown("###### Digimon")
+		c.image("imgs/dgm.jpg", width=200)
+		c.markdown("\r\n#### R$ 9,00")
+		c.markdown("#### Vários episódios para assistir")
+		if c.button(label = "Adicionar", key = 3, on_click = CartController.add_product, args = (Kart,prdct)):
+			Kart.add_product(prdct)
+	
 with tab2:
 	user = ''
 	password = ''
@@ -96,22 +98,19 @@ with tab2:
 		st.button(label= "Sair", key = 5, on_click= UserController.logout)
 
 with tab3:
-	def prodprec(int):
-		c = st.container()
-		for i in Kart.get_prod():
-			if int == 0:
-				c.markdown(i.get_name())
-			elif int == 1:
-				c.markdown(i.get_price())
-			elif int == 2:
-				c.image(i.get_url(), width=100)
-		return c
+	if 'Cart' in st.session_state:
 
-	st.header("Carrinho")
-	col1, col2, col3 = st.columns(3)
-	with col1:
-		prodprec(0)
-	with col2:
-		prodprec(1)
-	with col3:
-		prodprec(2)
+		row = st.container()
+		col1,col2 = st.columns(2)
+		col1.markdown("##### Produto")
+		col2.markdown("##### Preço")
+		prods = Kart.get_cart().get_prod()
+		with row :
+			for i in prods:
+				col1.markdown("#### %s" % i.get_name())
+				col2.markdown("#### R\$ %.2f" % i.get_price())
+
+		col1,col2 = st.columns(2)
+
+		col1.markdown("### Preço Total:")
+		col2.markdown("### R\$ %.2f" % Kart.total_price())

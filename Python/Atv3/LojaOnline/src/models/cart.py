@@ -1,3 +1,5 @@
+from src.controllers.product_controller import ProductController
+
 class Cart():
     def __init__(self):
         self._products = []
