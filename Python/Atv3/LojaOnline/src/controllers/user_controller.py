@@ -15,22 +15,13 @@ class UserController():
 
     def check_login(self, name, password):
         user_test = User(name = name, password = password, email=None)
-        d = {}
         for user in self.users:
-            key = user.get_name()
-            val = user.get_password()
-            d[key] = (val, user.get_email())
+            if user.get_name() == user_test.get_name() and user.get_password() == user_test.get_password():
+                st.session_state['Login'] = "aprovado"
+                st.session_state['Usuario'] = user.get_name()
+                st.session_state['email'] = user.get_email()
+                return True
+        return False
 
-        try:
-            if d[name][0] == password:
-                st.session_state["Login"] = "aprovado"
-                st.session_state['Usuario'] = name
-                st.session_state['Email'] = d[name][1]
-            else:
-                st.session_state["Login"] = "negado"
-                st.markdown("# Senha Incorreta")
-        except KeyError:
-            st.session_state["Login"] = "negado"
-            st.markdown("# Usuário Incorreto")
     def logout():
         st.session_state["Login"] = "negado"

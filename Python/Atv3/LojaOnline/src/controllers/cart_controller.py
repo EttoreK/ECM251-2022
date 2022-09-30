@@ -6,16 +6,15 @@ class CartController():
         self._cart = Cart()
 
     def add_product(self, product):
-        for i in self._cart._products:
-            if i.get_name() != product.get_name():
-                self._cart._products.append(product)
-                print(self._cart._products)
+        i = self._cart._products
+        for j in range(len(i)):
+            if i[j].get_name() == product.get_name():
                 return
 
+        self._cart._products.append(product)
         print(self._cart._products)
         return self
 
-    
     def calculate_price(self,product):
         return (product.get_price())
 
