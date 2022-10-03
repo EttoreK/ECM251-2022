@@ -6,11 +6,11 @@ from src.controllers.product_controller import ProductController
 with open("src/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
-p_contr = ProductController()
 if 'Cart' not in st.session_state:
 	st.session_state['Cart'] = CartController()
 	Kart = st.session_state['Cart']
 
+p_contr = ProductController()
 tab1, tab2, tab3 = st.tabs(["Início", "Perfil", "Carrinho"])
 
 with tab1:
@@ -24,7 +24,7 @@ with tab1:
 	with col1: 
 		st.markdown("#### R$ 400,00")
 	with col2:
-		st.markdown("#### mais de 1000 episódios para assistir")
+		st.markdown("## mais de 1000 episódios para assistir")
 	with col3:
 		prdct = p_contr.get_product(0)
 		c = st.container()
@@ -97,7 +97,7 @@ with tab2:
 			st.markdown(f"### Nome:\n{st.session_state['Usuario']}")
 			st.markdown(f"### Email:\n{st.session_state['email']}")
 		
-		st.button(label= "Sair", key = 6, on_click= UserController.logout)
+		st.button(label= "Sair", key = 6, on_click= UserController.logout, args=(UserController(), st.session_state['Cart']))
 
 with tab3:
 	if 'Cart' in st.session_state:
@@ -112,7 +112,7 @@ with tab3:
 				col1.markdown("#### %s" % i.get_name())
 				col2.markdown("#### R\$ %.2f" % i.get_price())
 
-		col1,col2 = st.columns(2)
+		col1, col2 = st.columns(2)
 
 		col1.markdown("### Preço Total:")
 		col2.markdown("### R\$ %.2f" % st.session_state['Cart'].total_price())

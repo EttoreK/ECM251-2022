@@ -9,5 +9,5 @@ class ProductController():
 			Product("Digimon", 9.00, "imgs/dgm.jpg")
         ]
 
-    def get_product(self,index):
+    def get_product(self, index):
         return self._produtos[index]

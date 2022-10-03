@@ -1,19 +1,27 @@
+import streamlit as st
 from src.models.cart import Cart
-from src.models.product import Product
+from src.controllers.user_controller import UserController
 
 class CartController():
     def __init__(self):
         self._cart = Cart()
 
     def add_product(self, product):
-        i = self._cart._products
-        for j in range(len(i)):
-            if i[j].get_name() == product.get_name():
-                return
+        if UserController().checklog():
+            i = self._cart._products
+            
+            for j in range(len(i)):
+                if i[j].get_name() != product.get_name():
+                    self._cart._products.append(product)
+                    return self
+            
+            if len(i) <= 0:
+                self._cart._products.append(product)
 
-        self._cart._products.append(product)
-        print(self._cart._products)
-        return self
+            return self
+        
+        else:
+            st.error("Faça Login na aba \"Perfil\" para adicionar ao carrinho")
 
     def calculate_price(self,product):
         return (product.get_price())

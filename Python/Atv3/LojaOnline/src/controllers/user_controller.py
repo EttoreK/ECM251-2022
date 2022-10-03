@@ -7,7 +7,7 @@ class UserController():
         self.users = [
             User(name="Datman", password = "robin", email = "druce_vvayne@yahoo.com.br"),
             User(name="JoãoRuimdeBriga", password = "arroz2", email = "joao.briga@gmail.com"),
-            User(name ="Tais", password="petacular", email = "tais.perando@ali.com")
+            User(name ="Tais", password="petacular", email = "tais.perando@ali.co")
         ]
     
     def check_user(self,user):
@@ -16,12 +16,19 @@ class UserController():
     def check_login(self, name, password):
         user_test = User(name = name, password = password, email=None)
         for user in self.users:
-            if user.get_name() == user_test.get_name() and user.get_password() == user_test.get_password():
+            if (user.get_name() == user_test.get_name() or user.get_email() == user_test.get_name()) and user.get_password() == user_test.get_password():
                 st.session_state['Login'] = "aprovado"
                 st.session_state['Usuario'] = user.get_name()
                 st.session_state['email'] = user.get_email()
                 return True
         return False
+    
+    def checklog(self):
+        if st.session_state['Login'] == "aprovado":
+            return True
+        else:
+            return False
 
-    def logout():
+    def logout(self, cart):
         st.session_state["Login"] = "negado"
+        cart.get_cart().limpa_carr()

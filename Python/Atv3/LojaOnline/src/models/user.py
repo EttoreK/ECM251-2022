@@ -6,13 +6,16 @@ class User():
     
     def get_password(self):
         return self._password
+
     def get_name(self):
         return self._name
+
     def get_email(self):
         return self._email
     
     def set_password(self, password):
         self._password = password
+        
     def set_name(self, name):
         self._name = name
 

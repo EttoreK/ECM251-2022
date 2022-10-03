@@ -1,5 +1,3 @@
-from src.controllers.product_controller import ProductController
-
 class Cart():
     def __init__(self):
         self._products = []
@@ -21,3 +19,8 @@ class Cart():
     
     def get_prod(self):
         return self._products
+
+    def limpa_carr(self):
+        while len(self._products) > 0:
+            self._products.pop()
+        return self
