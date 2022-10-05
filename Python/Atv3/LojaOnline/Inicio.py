@@ -103,14 +103,18 @@ with tab3:
 	if 'Cart' in st.session_state:
 
 		row = st.container()
-		col1,col2 = st.columns(2)
+		col1,col2,col3 = st.columns(3)
 		col1.markdown("##### Produto")
 		col2.markdown("##### Preço")
+		col3.markdown("\n")
 		prods = st.session_state['Cart'].get_cart().get_prod()
 		with row :
+			i = 7
 			for i in prods:
 				col1.markdown("#### %s" % i.get_name())
 				col2.markdown("#### R\$ %.2f" % i.get_price())
+				col3.button(label= "Remover", key = i , on_click=CartController.tira_prod , args=(st.session_state['Cart'],i.get_name()))
+				i =+ 1
 
 		col1, col2 = st.columns(2)
 

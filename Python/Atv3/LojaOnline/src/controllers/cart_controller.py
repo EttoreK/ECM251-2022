@@ -23,6 +23,14 @@ class CartController():
         else:
             st.error("Faça Login na aba \"Perfil\" para adicionar ao carrinho")
 
+    def tira_prod(self, name):
+        products = self.get_cart().get_prod()
+        for i in products:
+           if name == i.get_name():
+                products.remove(i)
+                return self
+        return self
+
     def calculate_price(self,product):
         return (product.get_price())
 

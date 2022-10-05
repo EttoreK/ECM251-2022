@@ -3,4 +3,4 @@ python -m pip install streamlit
 cd Scripts
 activate
 cd ..
-python -m streamlit run ./src/main.py
+python -m streamlit run Inicio.py
