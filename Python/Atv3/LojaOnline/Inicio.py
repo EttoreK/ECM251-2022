@@ -1,14 +1,13 @@
 import streamlit as st
-from src.controllers.cart_controller import CartController
+from src.controllers.cart_controller import CarrController
 from src.controllers.user_controller import UserController
 from src.controllers.product_controller import ProductController
 
 with open("src/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
-if 'Cart' not in st.session_state:
-	st.session_state['Cart'] = CartController()
-	Kart = st.session_state['Cart']
+if 'Carr' not in st.session_state:
+	st.session_state['Carr'] = CarrController()
 
 p_contr = ProductController()
 tab1, tab2, tab3 = st.tabs(["Início", "Perfil", "Carrinho"])
@@ -24,42 +23,42 @@ with tab1:
 	with col1: 
 		st.markdown("#### R$ 400,00")
 	with col2:
-		st.markdown("## mais de 1000 episódios para assistir")
+		st.markdown("#### mais de 1000 episódios para assistir")
 	with col3:
-		prdct = p_contr.get_product(0)
+		prdct = p_contr.get_prod(0)
 		c = st.container()
-		c.button(label = "Adicionar", key = 0, on_click = CartController.add_product, args = (st.session_state['Cart'],prdct))
+		c.button(label = "Adicionar", key = 0, on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 
 	col1, col2, col3 = st.columns(3,gap="large")
 	
 	with col1:
-		prdct = p_contr.get_product(1)
+		prdct = p_contr.get_prod(1)
 		c = st.container()
 		c.markdown("###### Yu-Gi-Oh! Duel Monsters")
 		c.image("imgs/ygo.jpg", width=200)
 		c.markdown("\r#### R$ 40,00")
 		c.markdown("#### 224 episódios para assistir")
-		c.button(label = "Adicionar", key = 1, on_click = CartController.add_product, args = (st.session_state['Cart'],prdct))
+		c.button(label = "Adicionar", key = 1, on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 			
 
 	with col2:
-		prdct = p_contr.get_product(2)
+		prdct = p_contr.get_prod(2)
 		print(prdct)
 		c = st.container()
 		c.markdown("###### My hero Academia")
 		c.image("imgs/mha.jpg", width=200)
 		c.markdown("\r#### R$ 120,00")
 		c.markdown("#### 113 episódios para assistir")
-		c.button(label = "Adicionar", key = 2, on_click = CartController.add_product, args = (st.session_state['Cart'],prdct))
+		c.button(label = "Adicionar", key = 2, on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 
 	with col3:
-		prdct = p_contr.get_product(3)
+		prdct = p_contr.get_prod(3)
 		c = st.container()
 		c.markdown("###### Digimon")
 		c.image("imgs/dgm.jpg", width=200)
 		c.markdown("\r\n#### R$ 9,00")
 		c.markdown("#### Vários episódios para assistir")
-		c.button(label = "Adicionar", key = 3, on_click = CartController.add_product, args = (st.session_state['Cart'],prdct))
+		c.button(label = "Adicionar", key = 3, on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 	
 with tab2:
 	if "Login" not in st.session_state:
@@ -97,26 +96,26 @@ with tab2:
 			st.markdown(f"### Nome:\n{st.session_state['Usuario']}")
 			st.markdown(f"### Email:\n{st.session_state['email']}")
 		
-		st.button(label= "Sair", key = 6, on_click= UserController.logout, args=(UserController(), st.session_state['Cart']))
+		st.button(label= "Sair", key = 6, on_click= UserController.logout, args=(UserController(), st.session_state['Carr']))
 
 with tab3:
-	if 'Cart' in st.session_state:
+	if 'Carr' in st.session_state:
 
 		row = st.container()
 		col1,col2,col3 = st.columns(3)
 		col1.markdown("##### Produto")
 		col2.markdown("##### Preço")
 		col3.markdown("\n")
-		prods = st.session_state['Cart'].get_cart().get_prod()
+		prods = st.session_state['Carr'].get_carr().get_prod()
 		with row :
 			i = 7
 			for i in prods:
 				col1.markdown("#### %s" % i.get_name())
 				col2.markdown("#### R\$ %.2f" % i.get_price())
-				col3.button(label= "Remover", key = i , on_click=CartController.tira_prod , args=(st.session_state['Cart'],i.get_name()))
+				col3.button(label= "Remover", key = i , on_click=CarrController.tira_prod , args=(st.session_state['Carr'],i.get_name()))
 				i =+ 1
 
 		col1, col2 = st.columns(2)
 
 		col1.markdown("### Preço Total:")
-		col2.markdown("### R\$ %.2f" % st.session_state['Cart'].total_price())
+		col2.markdown("### R\$ %.2f" % st.session_state['Carr'].ttl_cust())

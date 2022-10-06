@@ -1,26 +1,17 @@
-class Cart():
+class Carr():
     def __init__(self):
-        self._products = []
+        self._prods = []
 
     def adicionar(self, item):
-        self._products.append(item)
+        self._prods.append(item)
 
     def remover(self, item):
-        self._products.remove(item)
-
-    def get_valor_total(self):
-        total = 0
-        for item in self._products:
-            total += item.get_price()
-        return total
-        
-    def get_quantidade_itens(self):
-        return len(self._products)
+        self._prods.remove(item)
     
-    def get_prod(self):
-        return self._products
+    def get_prods(self):
+        return self._prods
 
     def limpa_carr(self):
-        while len(self._products) > 0:
-            self._products.pop()
+        while len(self._prods) > 0:
+            self._prods.pop()
         return self

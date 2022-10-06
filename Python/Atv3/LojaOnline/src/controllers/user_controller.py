@@ -29,6 +29,6 @@ class UserController():
         else:
             return False
 
-    def logout(self, cart):
+    def logout(self, kart):
         st.session_state["Login"] = "negado"
-        cart.get_cart().limpa_carr()
+        kart.get_carr().limpa_carr()

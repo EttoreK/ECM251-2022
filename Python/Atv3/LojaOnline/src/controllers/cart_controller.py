@@ -1,22 +1,22 @@
 import streamlit as st
-from src.models.cart import Cart
+from src.models.cart import Carr
 from src.controllers.user_controller import UserController
 
-class CartController():
+class CarrController():
     def __init__(self):
-        self._cart = Cart()
+        self._carr = Carr()
 
-    def add_product(self, product):
+    def add_prod(self, prod):
         if UserController().checklog():
-            i = self._cart._products
+            i = self._carr._prods
             
             for j in range(len(i)):
-                if i[j].get_name() != product.get_name():
-                    self._cart._products.append(product)
+                if i[j].get_name() != prod.get_name():
+                    self._carr._prods.append(prod)
                     return self
             
             if len(i) <= 0:
-                self._cart._products.append(product)
+                self._carr._prods.append(prod)
 
             return self
         
@@ -24,25 +24,22 @@ class CartController():
             st.error("Faça Login na aba \"Perfil\" para adicionar ao carrinho")
 
     def tira_prod(self, name):
-        products = self.get_cart().get_prod()
-        for i in products:
+        prods = self.get_carr().get_prods()
+        for i in prods:
            if name == i.get_name():
-                products.remove(i)
+                prods.remove(i)
                 return self
         return self
 
-    def calculate_price(self,product):
-        return (product.get_price())
+    def get_carr(self):
+        return self._carr
 
-    def get_cart(self):
-        return self._cart
+    def get_prod(self):
+        return self._carr._prods
 
-    def total_price(self):
-        products = self.get_cart().get_prod()
+    def ttl_cust(self):
+        prods = self.get_carr().get_prods()
         total = 0
-        for i in products:
+        for i in prods:
            total += (i.get_price())
         return total
-	
-    def get_prod(self):
-        return self._cart._products

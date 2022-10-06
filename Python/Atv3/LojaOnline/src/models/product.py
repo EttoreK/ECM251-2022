@@ -1,8 +1,9 @@
 class Product():
-    def __init__(self, name, price, url):
+    def __init__(self, name, price, img, desc):
         self._name = name
         self._price = price
-        self._url = url
+        self._img = img
+        self._desc = "Bom dia"
 
     def get_name(self):
         return self._name
@@ -10,8 +11,8 @@ class Product():
     def get_price(self):
         return self._price
 
-    def get_url(self):
-        return self._url
-        
-    def __str__(self):
-        return f'Product(_name:{self._name}, _price:{self._price}, _url:{self._url})'
+    def get_img(self):
+        return self._img
+    
+    def get_desc(self):
+        return self._desc
