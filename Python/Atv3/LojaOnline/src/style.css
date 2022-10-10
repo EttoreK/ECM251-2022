@@ -1,126 +1,114 @@
-.stButton > button {
-    background-color: #28464B;
-    height:50px;
-    color: #28464B
+/* ???? */
+.stApp, .css-ffhzg2, .eczokvf1{
+    background-color: #d38436;
 }
-.st-ce{
-    color: #B7D5D4;
-    background-color: #488286;
+/* Menu Superior */
+.css-1avcm0n, .e8zbici2{
+    display: none;
 }
-.css-81oif8 {
-    font-size: 14px;
-    color: #373E40;
-    background-color: #00BD9D;
-    display: flex;
-    visibility: visible;
-    margin-bottom: 0.5rem;
-    height: auto;
-    min-height: 1.5rem;
-    vertical-align: middle;
-    flex-direction: row;
-    -webkit-box-align: center;
-    align-items: center;
+/* Rodape */
+.css-1lsmgbg, .egzxvld0{
+    display: none;
 }
-
-.css-12oz5g7 {
-    flex: 1 1 0%;
-    width: 100%;
-    padding: 6rem 1rem 10rem;
-    max-width: 46rem;
-    background-color: #00BD9D;
+/* Fundo */
+.main,.css-k1vhr4,.egzxvld3{
+    background-color: #2a393d;
 }
-.css-1wrcr25 {
-    display: flex;
-    flex-direction: row;
-    -webkit-box-pack: start;
-    place-content: flex-start;
-    -webkit-box-align: stretch;
-    align-items: stretch;
+ /* Pagina geral */
+ .block-container,.css-12oz5g7,.egzxvld2{
+    background-color: #2a393d;
     position: absolute;
-    inset: 0px;
-    overflow: hidden;
-    background-color: #373E40;
 }
-
-.css-1r8izn3:last-of-type {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    background-color: #B7D5D4;
-    color: #305252;
-}
-
-
-.css-1r8izn3 {
-    margin: 0px;
-    border: none;
-    height: 100%;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 32px;
-    -webkit-box-pack: center;
-    justify-content: center;
-    color: rgb(49, 51, 63);
-    transition: color 300ms ease 0s, backgroundColor 300ms ease 0s;
-    background-color: rgb(240, 242, 246);
-    background-color: #B7D5D4;
-    color: #305252;
-}
-
-.css-hxt7ib {
-    padding-top: 6rem;
-    background-color: #373E40;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-.css-128j0gw {
-    padding-left: 0px;
-    background-color: #77878B;
-    padding-right: 0px;
-}
-
-.css-6qob1r {
+.css-1n76uvr, .e1tzin5v0{
     position: relative;
-    height: 100%;
-    background-color: #373E40;
-    width: 100%;
-    overflow: overlay;
+}
+/* Cabeçario */
+.st-bb, .st-b3, .st-bc, .st-bd, .st-be, .st-bf, .st-bg, .st-bh, .st-bi, .st-bj, .st-bk{
+    background-color: #ccba16;
+}
+/* todos os markdown e botões */
+.element-container, .css-1hynsf2, .e1tzin5v3{
+    place-content: justify-content ;
+}
+/* Todos os markdown */
+.stMarkdown{
+    place-content: justify-content ;
+    color: #2a393d;
+}
+.st-bp::placeholder{
+    color: #2a393d;
 }
 
-.css-fblp2m {
-    vertical-align: middle;
-    overflow: hidden;
-    color: inherit;
-    color: #B7D5D4;
-    background-color: #488286;
-    fill: currentcolor;
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    font-size: 1.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
+.css-e370rw, .e19lei0e1{
+    display: none;
+    visibility: hide;
 }
-
-.css-18ni7ap {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: 2.875rem;
-    background-color: #373E40; 
-    outline: none;
-    z-index: 999990;
-    display: block;
+.css-15zrgzn, .e16nr0p31{
+    display: none;
+    color: none
 }
-
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-    background-color: #488286;
-    color: #B7D5D4
+.e1fb0mya1, .css-1pxazr7, .ex0cdmw0{
+    display: none;
 }
-.css-1r8izn3:disabled {
-    cursor: allowed;
-    color: #488286
+.stButton > button {
+    background-color: #d3d136;
+    height:40px;
+    color: #0c0d32
 }
-
+.css-zt5igj, .e16nr0p32{
+    color:#ccba16
+}
+/* markdown (menos títulos) */
+.css-1fv8s86, .e16nr0p33{
+    place-content: justify-content ;
+    color: #a49613;
+}
+/* conteudo dos tab */
+.element-container, .css-1hynsf2, .e1tzin5v3{
+    place-content: justify-content ;
+}
+/* páginas */
+.stTabs, .css-0, .exp6ofz0{
+    place-content: justify-content ;
+}
+/* páginas */
+.st-ba{
+    place-content: justify-content ;
+}
+/* Containers */
+.st-bl, .st-bm, .st-bn, .st-bo, .st-ar, .st-as, .st-bp, .st-bq, .st-br, .st-bs, .st-bt, .st-bu, .st-bv, .st-bw, .st-bx, .st-by, .st-bz, .st-c0, .st-c1, .st-c2, .st-c3, .st-c4, .st-c5, .st-c6, .st-b1, .st-c7, .st-c8, .st-c9, .st-ca, .st-cb, .st-cc, .st-cd, .st-ce, .st-ae, .st-cf, .st-ag, .st-ah, .st-ai, .st-aj, .st-cg, .st-ch, .st-ci, .st-cj, .st-ck, .st-cl{
+    place-content: justify-content ;
+    color: #2a393d;
+}
+/* Marcação em baixo das tabs */
+.st-cn, .st-co, .st-cp, .st-cq, .st-cr, .st-cs, .st-cy, .st-cu{
+    display: none;
+    place-content: justify-content ;
+}
+/* tabs */
+.st-cv, .st-bb{
+    background-color: #d33636;
+}
+.st-cl{
+    background-color: rgb(255, 107, 107);
+    color: #551815;
+}
+.st-cl:hover{
+    background-color: #551815;
+    color: rgb(0, 38, 128);
+}
+.st-cl:active{
+    background-color: #551815;
+    color: rgb(0, 38, 128);
+}
+.st-cs{
+    background-color: rgb(0, 38, 128);
+}
+/* Conteudos das tabs */
+.st-cw, .st-c8, .st-cx, .st-bu, .st-bv, .st-bs{
+    place-content: justify-content ;
+}
+/* tamanho elementos */
+.resize-triggers{
+    place-content: justify-content ;
+}

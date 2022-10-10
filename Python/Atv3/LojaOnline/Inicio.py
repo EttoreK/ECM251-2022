@@ -1,3 +1,4 @@
+from ast import arg
 import streamlit as st
 from src.controllers.cart_controller import CarrController
 from src.controllers.user_controller import UserController
@@ -81,9 +82,8 @@ with tab2:
 		with col1:
 			st.button(label= "Entrar", key = 4, on_click= UserController.check_login, args = (UserController(),user,password))
 		with col2:
-			if st.button(label= "Criar conta", key = 5, on_click=None):
+			if st.button(label= "Criar conta", key = 5, on_click= None):
 				st.markdown("Opção indisponível")
-
 	else:
 		st.header("Perfil")
 
@@ -105,8 +105,8 @@ with tab3:
 		col1,col2,col3 = st.columns(3)
 		col1.markdown("##### Produto")
 		col2.markdown("##### Preço")
-		col3.markdown("\n")
-		prods = st.session_state['Carr'].get_carr().get_prod()
+		col3.markdown("##### Excluir\n\n\n")
+		prods = st.session_state['Carr'].get_carr().get_prods()
 		with row :
 			i = 7
 			for i in prods:
