@@ -1,0 +1,114 @@
+/* ???? */
+.stApp, .css-ffhzg2, .eczokvf1{
+    background-color: #d38436;
+}
+/* Menu Superior */
+.css-1avcm0n, .e8zbici2{
+    display: none;
+}
+/* Rodape */
+.css-1lsmgbg, .egzxvld0{
+    display: none;
+}
+/* Fundo */
+.main,.css-k1vhr4,.egzxvld3{
+    background-color: #2a393d;
+}
+ /* Pagina geral */
+ .block-container,.css-12oz5g7,.egzxvld2{
+    background-color: #2a393d;
+    position: absolute;
+}
+.css-1n76uvr, .e1tzin5v0{
+    position: relative;
+}
+/* Cabeçario */
+.st-bb, .st-b3, .st-bc, .st-bd, .st-be, .st-bf, .st-bg, .st-bh, .st-bi, .st-bj, .st-bk{
+    background-color: #ccba16;
+}
+/* todos os markdown e botões */
+.element-container, .css-1hynsf2, .e1tzin5v3{
+    place-content: justify-content ;
+}
+/* Todos os markdown */
+.stMarkdown{
+    place-content: justify-content ;
+    color: #2a393d;
+}
+.st-bp::placeholder{
+    color: #2a393d;
+}
+
+.css-e370rw, .e19lei0e1{
+    display: none;
+    visibility: hide;
+}
+.css-15zrgzn, .e16nr0p31{
+    display: none;
+    color: none
+}
+.e1fb0mya1, .css-1pxazr7, .ex0cdmw0{
+    display: none;
+}
+.stButton > button {
+    background-color: #d3d136;
+    height:40px;
+    color: #0c0d32
+}
+.css-zt5igj, .e16nr0p32{
+    color:#ccba16
+}
+/* markdown (menos títulos) */
+.css-1fv8s86, .e16nr0p33{
+    place-content: justify-content ;
+    color: #a49613;
+}
+/* conteudo dos tab */
+.element-container, .css-1hynsf2, .e1tzin5v3{
+    place-content: justify-content ;
+}
+/* páginas */
+.stTabs, .css-0, .exp6ofz0{
+    place-content: justify-content ;
+}
+/* páginas */
+.st-ba{
+    place-content: justify-content ;
+}
+/* Containers */
+.st-bl, .st-bm, .st-bn, .st-bo, .st-ar, .st-as, .st-bp, .st-bq, .st-br, .st-bs, .st-bt, .st-bu, .st-bv, .st-bw, .st-bx, .st-by, .st-bz, .st-c0, .st-c1, .st-c2, .st-c3, .st-c4, .st-c5, .st-c6, .st-b1, .st-c7, .st-c8, .st-c9, .st-ca, .st-cb, .st-cc, .st-cd, .st-ce, .st-ae, .st-cf, .st-ag, .st-ah, .st-ai, .st-aj, .st-cg, .st-ch, .st-ci, .st-cj, .st-ck, .st-cl{
+    place-content: justify-content ;
+    color: #2a393d;
+}
+/* Marcação em baixo das tabs */
+.st-cn, .st-co, .st-cp, .st-cq, .st-cr, .st-cs, .st-cy, .st-cu{
+    display: none;
+    place-content: justify-content ;
+}
+/* tabs */
+.st-cv, .st-bb{
+    background-color: #d33636;
+}
+.st-cl{
+    background-color: rgb(255, 107, 107);
+    color: #551815;
+}
+.st-cl:hover{
+    background-color: #551815;
+    color: rgb(0, 38, 128);
+}
+.st-cl:active{
+    background-color: #551815;
+    color: rgb(0, 38, 128);
+}
+.st-cs{
+    background-color: rgb(0, 38, 128);
+}
+/* Conteudos das tabs */
+.st-cw, .st-c8, .st-cx, .st-bu, .st-bv, .st-bs{
+    place-content: justify-content ;
+}
+/* tamanho elementos */
+.resize-triggers{
+    place-content: justify-content ;
+}
