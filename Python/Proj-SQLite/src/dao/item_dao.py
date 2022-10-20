@@ -1,4 +1,6 @@
+from math import fabs
 import sqlite3
+from unittest import result
 from src.models.item import Item
 class ItemDAO:
     
@@ -35,3 +37,32 @@ class ItemDAO:
         """, (item.id, item.nome, item.preco))
         self.conn.commit()
         self.cursor.close()
+
+    def pegar_item(self, id):
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT * FROM Itens
+            WHERE id = '{id}';
+        """)
+        item = None
+        resultado = self.cursor.fetchone()
+        if resultado != None:
+            item = Item(id=resultado[0], nome=resultado[1], preco=resultado[2])
+        self.cursor.close()
+        return item
+    
+    def atualizar_item(self, item):
+        try:
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(f"""
+                UPDATE Itens SET
+                nome = '{item.preco}',
+                preco = '{item.preco}'
+                WHERE id = '{item.id}';
+            """)
+            self.conn.commit()
+            self.cursor.close()
+        except:
+            return False
+        return True
+        

@@ -1,11 +1,12 @@
 from src.models.item import Item
 from src.dao.item_dao import ItemDAO
+
 class ItemController:
     def __init__(self) -> None:
         pass
 
     def pegar_item(self, id) -> Item:
-        item = algo()
+        item = ItemDAO.get_instance().pegar_item(id)
         return item
 
     def inserir_item(self, item) -> bool:
@@ -15,6 +16,9 @@ class ItemController:
             return False
         return True
 
-    def pegar_todos_itens(self):
+    def pegar_todos_itens(self) -> list[Item]:
         itens = ItemDAO.get_instance().get_all()
         return itens
+
+    def atualiza_item(self, item) -> bool:
+        return ItemDAO.get_instance().atualizar_item(item)
