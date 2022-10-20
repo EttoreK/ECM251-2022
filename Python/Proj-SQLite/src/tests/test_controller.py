@@ -18,4 +18,10 @@ print("\n**************************************\n")
 item=controller.pegar_item("OLA1")
 item.nome="RTX4090"
 item.preco = 14999.90
-print(controller.atualiza_item(item))
+print("Atualiza: ",controller.atualiza_item(item))
+print("Remove: ", controller.deleta_item(item))
+
+print("\n**************************************\n")
+items = controller.busca_item("Au")
+for item in items:
+    print(item)

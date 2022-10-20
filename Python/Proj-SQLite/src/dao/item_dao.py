@@ -1,6 +1,4 @@
-from math import fabs
 import sqlite3
-from unittest import result
 from src.models.item import Item
 class ItemDAO:
     
@@ -56,7 +54,7 @@ class ItemDAO:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
                 UPDATE Itens SET
-                nome = '{item.preco}',
+                nome = '{item.nome}',
                 preco = '{item.preco}'
                 WHERE id = '{item.id}';
             """)
@@ -65,4 +63,28 @@ class ItemDAO:
         except:
             return False
         return True
-        
+    
+    def remove_item(self, item):
+        try:
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(f"""
+                DELETE FROM Itens
+                WHERE id = '{item.id}';
+            """)
+            self.conn.commit()
+            self.cursor.close()
+        except:
+            return False
+        return True
+    
+    def procura_item_nome(self, nome):
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT * FROM Itens
+            WHERE nome LIKE '{nome}%';
+        """)
+        resultados = []
+        for resultado in self.cursor.fetchall():
+            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2]))
+        self.cursor.close()
+        return resultados
