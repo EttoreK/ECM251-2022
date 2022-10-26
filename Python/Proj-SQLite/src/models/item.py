@@ -4,4 +4,4 @@ class Item:
         self.nome = nome
         self.preco = preco
     def __str__(self) -> str:
-        return f'Item["id":{self.id}, "nome":{self.nome}, "preco":{self.preco}]]'
+        return f'Item["id":{self.id}, "nome":{self.nome},preco":{self.preco}]"'

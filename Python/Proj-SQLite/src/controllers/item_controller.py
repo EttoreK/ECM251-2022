@@ -15,17 +15,17 @@ class ItemController:
         except:
             return False
         return True
-
-    def pegar_todos_itens(self) -> list[Item]:
+    
+    def pegar_todos_itens(self) -> list:
         itens = ItemDAO.get_instance().get_all()
         return itens
-
-    def atualiza_item(self, item) -> bool:
+    
+    def atualizar_item(self, item) -> bool:
         return ItemDAO.get_instance().atualizar_item(item)
     
-    def deleta_item(self, item) -> bool:
-        return ItemDAO.get_instance().remove_item(item)
-
-    def busca_item(self, nome) -> list[Item]:
-        itens = ItemDAO.get_instance().procura_item_nome(nome)
+    def deletar_item(self, id) -> bool:
+        return ItemDAO.get_instance().deletar_item(id)
+    
+    def buscar_todos_itens_nome(self, nome) -> list:
+        itens = ItemDAO.get_instance().search_all_for_name(nome)
         return itens

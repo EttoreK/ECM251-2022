@@ -1,15 +1,15 @@
 import sqlite3
 from src.models.item import Item
-class ItemDAO:
-    
-    _instance = None
 
+class ItemDAO:
+    _instance = None
+    
     def __init__(self) -> None:
         self._connect()
 
     @classmethod
     def get_instance(cls):
-        if cls._instance == None:
+        if cls._instance is None:
             cls._instance = ItemDAO()
         return cls._instance
 
@@ -23,15 +23,15 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2]))
+            resultados.append(Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return resultados
-    
+
     def inserir_item(self, item):
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
-            INSERT INTO Itens (id, nome, preco)
-            VALUES(?,?,?);
+            INSERT INTO Itens(id, nome, preco)
+            Values(?,?,?);
         """, (item.id, item.nome, item.preco))
         self.conn.commit()
         self.cursor.close()
@@ -42,21 +42,21 @@ class ItemDAO:
             SELECT * FROM Itens
             WHERE id = '{id}';
         """)
-        item = None
+        item  = None
         resultado = self.cursor.fetchone()
         if resultado != None:
-            item = Item(id=resultado[0], nome=resultado[1], preco=resultado[2])
+            item = (Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return item
-    
+
     def atualizar_item(self, item):
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
                 UPDATE Itens SET
                 nome = '{item.nome}',
-                preco = '{item.preco}'
-                WHERE id = '{item.id}';
+                preco = {item.preco}
+                WHERE id = '{item.id}'
             """)
             self.conn.commit()
             self.cursor.close()
@@ -64,12 +64,12 @@ class ItemDAO:
             return False
         return True
     
-    def remove_item(self, item):
+    def deletar_item(self, id):
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
-                DELETE FROM Itens
-                WHERE id = '{item.id}';
+                DELETE FROM Itens 
+                WHERE id = '{id}'
             """)
             self.conn.commit()
             self.cursor.close()
@@ -77,7 +77,7 @@ class ItemDAO:
             return False
         return True
     
-    def procura_item_nome(self, nome):
+    def search_all_for_name(self, nome):
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
             SELECT * FROM Itens
@@ -85,6 +85,6 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id=resultado[0], nome=resultado[1], preco=resultado[2]))
+            resultados.append(Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return resultados
