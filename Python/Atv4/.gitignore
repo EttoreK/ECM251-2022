@@ -1,3 +1,29 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@EttoreK
+LuisGuilhermeSouzaM /
+ecm251-2022
+Public
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+
+    Insights
+
+ecm251-2022/Atividade3/projeto_loja_online/.gitignore
+LUIS GUILHERME DE SOUZA MUNHOZ atualizando .gitignore
+Latest commit 1933b8d 10 days ago
+History
+1 contributor
+144 lines (118 sloc) 2.1 KB
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -24,6 +50,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 .pyenv.cfg
+pyvenv.cfg
 *.egg
 MANIFEST
 
@@ -114,9 +141,9 @@ ENV/
 env.bak/
 venv.bak/
 Scripts/
-Include/
 share/
 etc/
+Include/
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -142,3 +169,20 @@ dmypy.json
 cython_debug/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Python
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
+ecm251-2022/.gitignore at main · LuisGuilhermeSouzaM/ecm251-2022

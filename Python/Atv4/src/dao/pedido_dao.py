@@ -1,5 +1,5 @@
 import sqlite3
-from src.models.pedido import Pedido
+
 class PedidoDAO:
     
     _instance = None
@@ -14,7 +14,7 @@ class PedidoDAO:
         return cls._instance
 
     def _connect(self):
-        self.conn = sqlite3.connect('./db/sqlite.db')
+        self.conn = sqlite3.connect('./db/sqlite.db', check_same_thread=False)
 
     def get_all(self):
         self.cursor = self.conn.cursor()

@@ -1,6 +1,8 @@
 import streamlit as st
-from src.models.cart import Carr
 from src.controllers.user_controller import UserController
+from src.controllers.item_controller import ItemController
+from src.dao.pedido_dao import PedidoDAO
+from src.models.cart import Carr
 
 class CarrController():
     def __init__(self):
@@ -8,15 +10,14 @@ class CarrController():
 
     def add_prod(self, prod):
         if UserController().checklog():
-            i = self._carr._prods
-            
-            for j in range(len(i)):
-                if i[j].get_name() != prod.get_name():
-                    self._carr._prods.append(prod)
+            Cprod = self.get_prod()
+            for j in range(len(Cprod)):
+                if Cprod[j].get_name() != prod.get_name():
+                    Cprod.append(prod)
                     return self
             
-            if len(i) <= 0:
-                self._carr._prods.append(prod)
+            if len(Cprod) <= 0:
+                Cprod.append(prod)
 
             return self
         
@@ -35,11 +36,32 @@ class CarrController():
         return self._carr
 
     def get_prod(self):
-        return self._carr._prods
+        return self.get_carr().get_prods()
 
     def ttl_cust(self):
-        prods = self.get_carr().get_prods()
+        Cprod = self.get_prod()
         total = 0
-        for i in prods:
+        for i in Cprod:
            total += (i.get_price())
         return total
+    
+    def total_pedido(self, numero_pedido) -> float:
+        items_pedido = PedidoDAO.get_instance().pegar_pedido(numero_pedido)
+        total = 0
+        item_controller = ItemController()
+        for item in items_pedido:
+            item_elemento = item_controller.pegar_item(item.id_item)
+            total += item_elemento.preco * item.quantidade
+        return total
+
+    def pegar_pedido(self, numero_pedido)-> list:
+        return PedidoDAO.get_instance().pegar_pedido(numero_pedido)
+
+    def atualizar_pedido(self, pedido)-> bool:
+        return PedidoDAO.get_instance().atualizar_pedido(pedido)
+
+    def deletar_pedido(self, id) -> bool:
+        return PedidoDAO.get_instance().deletar_item(id)
+
+    def inserir_pedido(self, pedido) -> None:
+        PedidoDAO.get_instance().inserir_pedido(pedido)

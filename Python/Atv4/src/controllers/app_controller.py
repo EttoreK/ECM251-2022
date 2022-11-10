@@ -1,13 +1,12 @@
-from src.controllers.item_controller import ItemController
-from src.controllers.pedido_controller import PedidoController
-from src.models.pedido import Pedido
-from src.models.cliente import PedidoCliente
 import uuid
+from src.controllers.item_controller import ItemController
+from src.controllers.cart_controller import CarrController
+from src.models.item import Item
 
 class Application:
 	def __init__(self):
 		self.item_controller = ItemController()
-		self.pedido_controller = PedidoController()
+		self.pedido_controller = CarrController()
 		self.cliente_pedido_atual = None
 	
 	def criar_novo_pedido(self, cpf):

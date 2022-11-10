@@ -1,14 +1,11 @@
 import streamlit as st
+from src.dao.user_dao import UserDAO
 from src.models.user import User
 
 class UserController():
     def __init__(self):
         # Carrega os dados dos usuários
-        self.users = [
-            User(name="Datman", password = "robin", email = "druce_vvayne@yahoo.com.br"),
-            User(name="JoãoRuimdeBriga", password = "arroz2", email = "joao.briga@gmail.com"),
-            User(name ="Tais", password="petacular", email = "tais.perando@ali.co")
-        ]
+        self.users = UserDAO.get_instance().get_all()
     
     def check_user(self,user):
         return user in self.users
@@ -32,3 +29,10 @@ class UserController():
     def logout(self, kart):
         st.session_state["Login"] = "negado"
         kart.get_carr().limpa_carr()
+    
+    def cadastrar(self, name, senha, senha2, email) -> bool:
+        retorno = False
+        if senha == senha2:
+            return retorno
+        retorno = UserDAO.novo_usu(name, senha, email)
+        return retorno
