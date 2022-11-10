@@ -4,16 +4,17 @@ from src.controllers.cart_controller import CarrController
 from src.controllers.item_controller import ItemController
 from src.controllers.user_controller import UserController
 
+# with open("./css/style.css") as f:
+# 	st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+
 stm = Sistema()
 ItemC = ItemController()
 CarrC = CarrController()
 UserC = UserController()
-# passw2 = False
+st.set_page_config(page_title="", page_icon="")
 
-# st.set_page_config(page_title="", page_icon="")
-
-with open("./css/style.css") as f:
-	st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+if "Cadastro" not in st.session_state:
+	st.session_state["Cadastro"] = False
 
 if "Login" not in st.session_state:
 	st.session_state["Login"] = "negado"
@@ -51,7 +52,6 @@ with tab1:
 		c.markdown("#### 224 episódios para assistir")
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 			
-
 	with col2:
 		prdct = ItemC.pegar_item('ABC')
 		c = st.container()
@@ -90,28 +90,26 @@ with tab2:
 			label_visibility= "hidden"
 		)
 		
-		# password2 = st.text_input(
-		# 	label="",
-		# 	placeholder="Confirmar senha",
-		# 	type = "password",
-		# 	key = stm.get_key(),
-		# 	disabled = passw2
-		# )
-		# email = st.text_input(
-		# 	label="",
-		# 	placeholder="Email",
-		# 	key = stm.get_key(),
-		# 	disabled = passw2 
-		# )
-		
-		col1, col2 = st.columns(2)
-		with col1:
-			st.button(label= "Entrar", key = stm.get_key(), on_click= UserController.check_login, args = (UserC,user,password))
-		with col2:
-			if st.button(label= "Cadastrar", key = stm.get_key(), on_click= None):
-				# passw2 = True
-				# st.button(label= "Criar conta", key = stm.get_key(), on_click= UserController.cadastrar, args = (UserC,user,password,password2,email))
-				st.markdown("Erro")
+		if not st.session_state["Cadastro"]:
+			col1, col2 = st.columns(2)
+			with col1:
+				st.button(label= "Entrar", key = stm.get_key(), on_click= UserController.check_login, args = (UserC,user,password))
+			with col2:
+				st.button(label= "Cadastrar", key = stm.get_key(), on_click= stm.inverte, args= ())
+		else:
+			password2 = st.text_input(
+				label="pass2",
+				label_visibility="hidden",
+				placeholder="Confirmar senha",
+				type = "password"
+			)
+			email = st.text_input(
+				label="email",
+				label_visibility="hidden",
+				placeholder="Email"
+			)
+			st.button(label= "Criar conta", key = stm.get_key(), on_click= UserController.cadastrar, args = (UserC,user,password,password2,email))
+			st.markdown("Erro")
 	else:
 		st.header("Perfil")
 

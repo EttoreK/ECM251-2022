@@ -40,16 +40,14 @@
 }
 
 .css-e370rw, .e19lei0e1{
-    display: none;
     visibility: hide;
 }
 .css-15zrgzn, .e16nr0p31{
-    display: none;
     color: none
 }
-.e1fb0mya1, .css-1pxazr7, .ex0cdmw0{
-    display: none;
-}
+/* .e1fb0mya1, .css-1pxazr7, .ex0cdmw0{
+
+} */
 .stButton > button {
     background-color: #d3d136;
     height:40px;
@@ -82,7 +80,6 @@
 }
 /* Marcação em baixo das tabs */
 .st-cn, .st-co, .st-cp, .st-cq, .st-cr, .st-cs, .st-cy, .st-cu{
-    display: none;
     place-content: justify-content ;
 }
 /* tabs */

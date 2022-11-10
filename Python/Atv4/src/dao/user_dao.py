@@ -1,4 +1,5 @@
 import sqlite3
+import random
 from src.models.user import User
 
 class UserDAO:
@@ -30,16 +31,16 @@ class UserDAO:
     def inserir_user(self, user):
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
-            INSERT INTO Users(email, name, password)
+            INSERT INTO Clientes(email, nome, senha)
             Values(?,?,?);
-        """, (user.email, user.name, user.password))
+        """, (user.email, user.nome, user.password))
         self.conn.commit()
         self.cursor.close()
 
     def pegar_user(self, email):
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
-            SELECT * FROM Users
+            SELECT * FROM Clientes
             WHERE email = '{email}';
         """)
         user  = None
@@ -53,9 +54,9 @@ class UserDAO:
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
-                UPDATE Users SET
+                UPDATE Clientes SET
                 name = '{user.name}',
-                password = {user.password}
+                senha = {user.password}
                 WHERE email = '{user.email}'
             """)
             self.conn.commit()
@@ -68,7 +69,7 @@ class UserDAO:
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
-                DELETE FROM Users 
+                DELETE FROM Clientes 
                 WHERE email = '{email}'
             """)
             self.conn.commit()
@@ -80,7 +81,7 @@ class UserDAO:
     def search_all_for_name(self, name):
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
-            SELECT * FROM Users
+            SELECT * FROM Clientes
             WHERE name LIKE '{name}%';
         """)
         resultados = []
@@ -89,25 +90,43 @@ class UserDAO:
         self.cursor.close()
         return resultados
     
-    def search_all_for_email(self, email):
+    def search_all_for_email(self, email) -> bool:
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
-            SELECT * FROM Users
+            SELECT * FROM Clientes
             WHERE email LIKE '{email}%';
         """)
-        resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(User(email = resultado[0], name = resultado[1], password = resultado[2]))
+            if resultado[0] == email:
+                return False
         self.cursor.close()
-        return resultados
+        return True
     
+    def get_id(self) -> str:
+        MAX_LIMIT = 255
+        random_string = ''
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT id_cliente FROM Clientes
+            WHERE id_cliente LIKE '{random_string}%';
+        """)
+        while True:
+            for _ in range(3):
+                random_integer = random.randint(0, MAX_LIMIT)
+                # Keep appending random characters using chr(x)
+                random_string += (chr(random_integer))
+            if random_string not in self.cursor.fetchall():
+                break
+        self.cursor.close()
+        return random_string
+
     def novo_usu(self, user, senha, email) -> bool:
-        if self.search_all_for_email(email) == None:
+        if self.search_all_for_email(email):
             self.cursor = self.conn.cursor()
             self.cursor.execute("""
-                INSERT INTO Users(email, name, password)
-                Values(?,?,?);
-            """, (email, user, senha))
+                INSERT INTO Clientes(id_cliente, email, nome, senha)
+                Values(?,?,?,?);
+            """, (self.get_id(), email, user, senha))
             self.conn.commit()
             self.cursor.close()
             return True

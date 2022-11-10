@@ -32,7 +32,7 @@ class UserController():
     
     def cadastrar(self, name, senha, senha2, email) -> bool:
         retorno = False
-        if senha == senha2:
+        if senha != senha2:
             return retorno
-        retorno = UserDAO.novo_usu(name, senha, email)
+        retorno = UserDAO.get_instance().novo_usu(name, senha, email)
         return retorno

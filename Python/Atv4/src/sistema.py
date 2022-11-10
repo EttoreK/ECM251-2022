@@ -45,3 +45,7 @@ class Sistema:
 				st.session_state["Key"] = 0
 		
 		return st.session_state["Key"]
+	
+	def inverte(self):
+		st.session_state["Cadastro"] = not st.session_state["Cadastro"]
+		
