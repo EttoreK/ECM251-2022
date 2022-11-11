@@ -10,13 +10,12 @@ class ItemController:
         return item
     
     def pegar_id(self) -> str:
-        return ItemDAO.get_instance().get_id
+        return ItemDAO.get_instance().get_id()
 
     def inserir_item(self, item) -> bool:
         try:
             ItemDAO.get_instance().inserir_item(item)
         except:
-            print("Falha")
             return False
         return True
     

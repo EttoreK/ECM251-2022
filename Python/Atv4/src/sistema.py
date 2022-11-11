@@ -41,8 +41,11 @@ class Sistema:
 		return CarrController.add_prod(st.session_state['Carr'], prodct)
 	
 	def add_produto_db(self, id, nome, preco) -> None:
-		if id == "":
+		if not id:
 			id = self.itemc.pegar_id()
+		if not nome or not preco:
+			st.error("Preenha todos os campos (\"Nome\", \"Preco\")")
+			return
 		self.itemc.inserir_item(Item(id, nome, preco))
 	
 	def verifica_adm(self) -> bool:
@@ -51,7 +54,7 @@ class Sistema:
 	def verifica_login(self, user, senha) -> None:
 		self.userc.check_login(user,senha)
 
-	def inverte_estado_cadastro() -> None:
+	def inverte_estado_cadastro(self) -> None:
 		st.session_state["Cadastro"] = not st.session_state["Cadastro"]
 
 	def realiza_cadastro(self,user,password,password2,email) -> None:

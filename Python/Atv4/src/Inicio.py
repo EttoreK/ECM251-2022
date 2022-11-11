@@ -17,6 +17,28 @@ with tab1:
 	# Titulo
 	st.header("Início")
 
+	if stm.verifica_adm():
+		c_exp = st.expander("Adicionar Produto", expanded=False)
+		c_exp.header("Adicionar Produto")
+		id = c_exp.text_input(
+			label="Id",
+			placeholder="Id específico?",
+			value = "",
+			label_visibility= "hidden"
+		)
+		nome = c_exp.text_input(
+			label="Nome",
+			placeholder="Nome do produto",
+			label_visibility= "hidden"
+		)
+		preco = c_exp.number_input(
+			label="Preco",
+			# placeholder="Preco do produto",
+			label_visibility= "hidden",
+			value = 0.00
+		)
+		c_exp.button(label = "Adicionar produto", key = stm.get_key(), on_click = Sistema.add_produto_db, args = (stm, id, nome, preco))
+
 	# mostruario
 	st.markdown("###### Pókemon")
 	st.image(image = "imgs/pkm.jpg", width=700)
@@ -32,25 +54,6 @@ with tab1:
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_carr, args = (st.session_state['Carr'], prdct))
 
 	col1, col2, col3 = st.columns(3,gap="large")
-
-	if stm.verifica_adm():
-		c_exp = st.expander("Adicionar Produto", expanded=False)
-		id = c_exp.text_input(
-			label="Id",
-			placeholder="Id específico?",
-			label_visibility= "hidden"
-		)
-		nome = c_exp.text_input(
-			label="Nome",
-			placeholder="Nome do produto",
-			label_visibility= "hidden"
-		)
-		preco = c_exp.text_input(
-			label="Preco",
-			placeholder="Preco do produto",
-			label_visibility= "hidden"
-		)
-		c_exp.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_db, args = (id, nome, preco))
 	
 	with col1:
 		prdct = stm.pega_item("BDE") # ItemC.pegar_item('BDE')

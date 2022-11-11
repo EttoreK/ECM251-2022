@@ -1,6 +1,6 @@
 python -m venv .
-python -m pip install streamlit
 cd Scripts
 activate
 cd ..
+python -m pip install streamlit
 python -m streamlit run ./src/Inicio.py
