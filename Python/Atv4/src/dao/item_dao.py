@@ -1,4 +1,5 @@
 import sqlite3
+import random
 from src.models.item import Item
 
 class ItemDAO:
@@ -14,7 +15,7 @@ class ItemDAO:
         return cls._instance
 
     def _connect(self):
-        self.conn = sqlite3.connect('./db/sqlite.db', check_same_thread=False)
+        self.conn = sqlite3.connect('./db/atvsql.db', check_same_thread=False)
 
     def get_all(self):
         self.cursor = self.conn.cursor()
@@ -26,6 +27,23 @@ class ItemDAO:
             resultados.append(Item(id_prod = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return resultados
+    
+    def get_id(self) -> str:
+        MAX_LIMIT = 255
+        random_string = ''
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(f"""
+            SELECT id_cliente FROM Clientes
+            WHERE id_cliente LIKE '{random_string}%';
+        """)
+        while True:
+            for _ in range(3):
+                random_integer = random.randint(0, MAX_LIMIT)
+                random_string += (chr(random_integer))
+            if random_string not in self.cursor.fetchall():
+                break
+        self.cursor.close()
+        return random_string
 
     def inserir_item(self, item):
         self.cursor = self.conn.cursor()

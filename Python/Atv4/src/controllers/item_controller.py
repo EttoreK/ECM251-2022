@@ -8,11 +8,15 @@ class ItemController:
     def pegar_item(self, id_prd) -> Item:
         item = ItemDAO.get_instance().pegar_item(id_prd)
         return item
+    
+    def pegar_id(self) -> str:
+        return ItemDAO.get_instance().get_id
 
     def inserir_item(self, item) -> bool:
         try:
             ItemDAO.get_instance().inserir_item(item)
         except:
+            print("Falha")
             return False
         return True
     

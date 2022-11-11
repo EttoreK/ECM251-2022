@@ -1,5 +1,5 @@
-from sistema import Sistema
 import streamlit as st
+from sistema import Sistema
 # from src.controllers.cart_controller import CarrController
 # from src.controllers.item_controller import ItemController
 # from src.controllers.user_controller import UserController
@@ -10,20 +10,6 @@ import streamlit as st
 
 stm = Sistema()
 stm.comeco()
-
-# ItemC = ItemController()
-# CarrC = CarrController()
-# UserC = UserController()
-
-# if "Cadastro" not in st.session_state:
-# 	st.session_state["Cadastro"] = False
-# 	st.session_state["Estado_Cadastro"] = ""
-
-# if "Login" not in st.session_state:
-# 	st.session_state["Login"] = "negado"
-# 	st.session_state["Usuario"] = ""
-# 	st.session_state["Email"] = ""
-# 	st.session_state["Carr"] = CarrC
 
 tab1, tab2, tab3 = st.tabs(["Início", "Perfil", "Carrinho"])
 
@@ -46,6 +32,25 @@ with tab1:
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_carr, args = (st.session_state['Carr'], prdct))
 
 	col1, col2, col3 = st.columns(3,gap="large")
+
+	if stm.verifica_adm():
+		c_exp = st.expander("Adicionar Produto", expanded=False)
+		id = c_exp.text_input(
+			label="Id",
+			placeholder="Id específico?",
+			label_visibility= "hidden"
+		)
+		nome = c_exp.text_input(
+			label="Nome",
+			placeholder="Nome do produto",
+			label_visibility= "hidden"
+		)
+		preco = c_exp.text_input(
+			label="Preco",
+			placeholder="Preco do produto",
+			label_visibility= "hidden"
+		)
+		c_exp.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_db, args = (id, nome, preco))
 	
 	with col1:
 		prdct = stm.pega_item("BDE") # ItemC.pegar_item('BDE')

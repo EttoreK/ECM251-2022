@@ -102,7 +102,7 @@ class UserDAO:
                 return False
         self.cursor.close()
         return True
-    
+
     def get_id(self) -> str:
         MAX_LIMIT = 255
         random_string = ''

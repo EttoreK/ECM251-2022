@@ -3,30 +3,36 @@ from src.dao.user_dao import UserDAO
 from src.models.user import User
 
 class UserController():
-    def __init__(self):
+    def __init__(self) -> None:
         # Carrega os dados dos usuários
         self.users = UserDAO.get_instance().get_all()
     
-    def check_user(self,user):
+    def check_user(self,user) -> list:
         return user in self.users
 
-    def check_login(self, name, password):
+    def check_login(self, name, password) -> bool:
         user_test = User(id_usu = "𖥸", name = name, password = password, email="𖥸")
         for user in self.users:
             if (user.get_name() == user_test.get_name() or user.get_email() == user_test.get_name()) and user.get_password() == user_test.get_password():
                 st.session_state['Login'] = "aprovado"
                 st.session_state['Usuario'] = user.get_name()
                 st.session_state['Email'] = user.get_email()
+                st.session_state['Id'] = user.get_id()
                 return True
         return False
     
-    def checklog(self):
+    def check_adm(self) -> bool:
+        if st.session_state['Id'] == "ADM":
+            return True
+        return False
+
+    def checklog(self) -> bool:
         if st.session_state['Login'] == "aprovado":
             return True
         else:
             return False
 
-    def logout(self, kart):
+    def logout(self, kart) -> None:
         st.session_state["Login"] = "negado"
         kart.get_carr().limpa_carr()
     

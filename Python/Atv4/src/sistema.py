@@ -21,6 +21,7 @@ class Sistema:
 			st.session_state["Login"] = "negado"
 			st.session_state["Usuario"] = ""
 			st.session_state["Email"] = ""
+			st.session_state['Id'] = ""
 			st.session_state["Carr"] = CarrController()
 	
 	def get_key(self) -> int:
@@ -38,6 +39,14 @@ class Sistema:
 
 	def add_produto_carr(self, carrinho, prodct) -> None:
 		return CarrController.add_prod(st.session_state['Carr'], prodct)
+	
+	def add_produto_db(self, id, nome, preco) -> None:
+		if id == "":
+			id = self.itemc.pegar_id()
+		self.itemc.inserir_item(Item(id, nome, preco))
+	
+	def verifica_adm(self) -> bool:
+		return self.userc.check_adm()
 	
 	def verifica_login(self, user, senha) -> None:
 		self.userc.check_login(user,senha)
