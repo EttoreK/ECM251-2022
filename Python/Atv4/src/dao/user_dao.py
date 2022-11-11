@@ -1,5 +1,6 @@
 import sqlite3
 import random
+import streamlit as st
 from src.models.user import User
 
 class UserDAO:
@@ -24,7 +25,7 @@ class UserDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(User(email = resultado[0], name = resultado[1], password = resultado[2]))
+            resultados.append(User(id_usu = resultado[0], name = resultado[1], password = resultado[2], email=resultado[3]))
         self.cursor.close()
         return resultados
 
@@ -46,7 +47,7 @@ class UserDAO:
         user  = None
         resultado = self.cursor.fetchone()
         if resultado != None:
-            user = (User(email = resultado[0], name = resultado[1], password = resultado[2]))
+            user = (User(id_usu = resultado[0], name = resultado[1], password = resultado[2], email=resultado[3]))
         self.cursor.close()
         return user
 
@@ -86,7 +87,7 @@ class UserDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(User(email = resultado[0], name = resultado[1], password = resultado[2]))
+            resultados.append(User(id_usu = resultado[0], name = resultado[1], password = resultado[2], email=resultado[3]))
         self.cursor.close()
         return resultados
     
@@ -113,7 +114,6 @@ class UserDAO:
         while True:
             for _ in range(3):
                 random_integer = random.randint(0, MAX_LIMIT)
-                # Keep appending random characters using chr(x)
                 random_string += (chr(random_integer))
             if random_string not in self.cursor.fetchall():
                 break
@@ -129,5 +129,7 @@ class UserDAO:
             """, (self.get_id(), email, user, senha))
             self.conn.commit()
             self.cursor.close()
+            st.session_state["Estado_Cadastro"] = "Concluido"
             return True
+        st.session_state["Estado_Cadastro"] = "Email_Ig"
         return False

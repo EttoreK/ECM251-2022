@@ -5,8 +5,8 @@ class ItemController:
     def __init__(self) -> None:
         pass
 
-    def pegar_item(self, id) -> Item:
-        item = ItemDAO.get_instance().pegar_item(id)
+    def pegar_item(self, id_prd) -> Item:
+        item = ItemDAO.get_instance().pegar_item(id_prd)
         return item
 
     def inserir_item(self, item) -> bool:
@@ -23,8 +23,8 @@ class ItemController:
     def atualizar_item(self, item) -> bool:
         return ItemDAO.get_instance().atualizar_item(item)
     
-    def deletar_item(self, id) -> bool:
-        return ItemDAO.get_instance().deletar_item(id)
+    def deletar_item(self, id_prd) -> bool:
+        return ItemDAO.get_instance().deletar_item(id_prd)
     
     def buscar_todos_itens_nome(self, nome) -> list:
         itens = ItemDAO.get_instance().search_all_for_name(nome)

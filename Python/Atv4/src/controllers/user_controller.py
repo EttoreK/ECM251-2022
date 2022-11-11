@@ -11,12 +11,12 @@ class UserController():
         return user in self.users
 
     def check_login(self, name, password):
-        user_test = User(name = name, password = password, email=None)
+        user_test = User(id_usu = "𖥸", name = name, password = password, email="𖥸")
         for user in self.users:
             if (user.get_name() == user_test.get_name() or user.get_email() == user_test.get_name()) and user.get_password() == user_test.get_password():
                 st.session_state['Login'] = "aprovado"
                 st.session_state['Usuario'] = user.get_name()
-                st.session_state['email'] = user.get_email()
+                st.session_state['Email'] = user.get_email()
                 return True
         return False
     
@@ -32,7 +32,11 @@ class UserController():
     
     def cadastrar(self, name, senha, senha2, email) -> bool:
         retorno = False
+        if senha == "" or senha2 == "" or name == "" or email == "":
+            st.session_state["Estado_Cadastro"] = "Senha_Vaz"
+            return retorno
         if senha != senha2:
+            st.session_state["Estado_Cadastro"] = "Senha_Dispar"
             return retorno
         retorno = UserDAO.get_instance().novo_usu(name, senha, email)
         return retorno

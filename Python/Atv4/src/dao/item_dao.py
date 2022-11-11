@@ -23,7 +23,7 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
+            resultados.append(Item(id_prod = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return resultados
 
@@ -36,16 +36,16 @@ class ItemDAO:
         self.conn.commit()
         self.cursor.close()
 
-    def pegar_item(self, id):
+    def pegar_item(self, id_prd):
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
             SELECT * FROM Itens
-            WHERE id = '{id}';
+            WHERE id = '{id_prd}';
         """)
         item  = None
         resultado = self.cursor.fetchone()
         if resultado != None:
-            item = (Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
+            item = (Item(id_prod = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return item
 
@@ -64,12 +64,12 @@ class ItemDAO:
             return False
         return True
     
-    def deletar_item(self, id):
+    def deletar_item(self, id_prd):
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
                 DELETE FROM Itens 
-                WHERE id = '{id}'
+                WHERE id = '{id_prd}'
             """)
             self.conn.commit()
             self.cursor.close()
@@ -85,6 +85,6 @@ class ItemDAO:
         """)
         resultados = []
         for resultado in self.cursor.fetchall():
-            resultados.append(Item(id = resultado[0], nome = resultado[1], preco = resultado[2]))
+            resultados.append(Item(id_prod = resultado[0], nome = resultado[1], preco = resultado[2]))
         self.cursor.close()
         return resultados

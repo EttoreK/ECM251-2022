@@ -11,15 +11,22 @@ class CarrController():
     def add_prod(self, prod):
         if UserController().checklog():
             Cprod = self.get_prod()
-            for j in range(len(Cprod)):
-                if Cprod[j].get_name() != prod.get_name():
-                    Cprod.append(prod)
-                    return self
             
-            if len(Cprod) <= 0:
+            try:
+                len(Cprod) > 0
+            except:
+                Cprod.append(prod)
+                return self
+
+            listid = Cprod
+            # print(len(Cprod))
+            for j in range(len(Cprod)):
+                listid[j] = Cprod[j]
+
+            if prod.get_id() not in listid:
                 Cprod.append(prod)
 
-            return self
+            return Cprod
         
         else:
             st.error("Faça Login na aba \"Perfil\" para adicionar ao carrinho")
@@ -36,7 +43,7 @@ class CarrController():
         return self._carr
 
     def get_prod(self):
-        return self.get_carr().get_prods()
+        return self._carr.get_prods()
 
     def ttl_cust(self):
         Cprod = self.get_prod()
