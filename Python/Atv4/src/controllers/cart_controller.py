@@ -8,7 +8,7 @@ class CarrController():
     def __init__(self):
         self._carr = Carr()
 
-    def add_prod(self, prod):
+    def add_prod(self, prod) -> None:
         if UserController().checklog():
             Cprod = self.get_prod()
             
@@ -39,13 +39,13 @@ class CarrController():
                 return self
         return self
 
-    def get_carr(self):
+    def get_carr(self) -> Carr:
         return self._carr
 
-    def get_prod(self):
+    def get_prod(self) -> list:
         return self._carr.get_prods()
 
-    def ttl_cust(self):
+    def ttl_cust(self) -> float:
         Cprod = self.get_prod()
         total = 0
         for i in Cprod:

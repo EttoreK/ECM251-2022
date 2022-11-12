@@ -13,6 +13,8 @@ class Sistema:
 		self.userc = UserController()
 	
 	def comeco(self) -> None:
+		st.set_page_config(layout='wide')
+
 		if "Cadastro" not in st.session_state:
 			st.session_state["Cadastro"] = False
 			st.session_state["Estado_Cadastro"] = ""
@@ -59,6 +61,35 @@ class Sistema:
 
 	def realiza_cadastro(self,user,password,password2,email) -> None:
 		self.userc.cadastrar(user,password,password2,email)
+	
+	def altera_usuario(self, nome_usu, email_usu, senha_usu, senha_usu2) -> None:
+		user = self.userc.usuario_atual()
+		novo_nome = user.get_name()
+		novo_email = user.get_email()
+		nova_senha = user.get_password()
+
+		if senha_usu2 != senha_usu:
+			st.error("As senhas devem ser iguais")
+			return
+		elif senha_usu2 == user.get_password() or senha_usu == user.get_password():
+			st.error("As senhas não podem ser igauis à anterior")
+			return
+		elif senha_usu != user.get_password() and senha_usu != "":
+			nova_senha = senha_usu
+
+		if nome_usu != user.get_name() and nome_usu != "":
+			novo_nome = nome_usu
+		
+		if email_usu != user.get_email() and email_usu != "":
+			novo_email = email_usu
+		
+		novo_usu = self.userc.usuario_fantasma(st.session_state['Id'], novo_nome, nova_senha, novo_email)
+		
+		alterdo = self.userc.alterar_usuario(novo_usu)
+		if alterdo:
+			st.error("Alterado com sucesso")
+		else:
+			st.error("Falha ao alterar")
 	
 	def sair(self) -> None:
 		self.userc.logout(st.session_state["Carr"])

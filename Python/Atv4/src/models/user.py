@@ -24,4 +24,4 @@ class User():
         self._name = name
 
     def __str__(self) -> str:
-        return f'User(name:{self._name}, email:{self._email}, password:{self._password}'
+        return f'User(id: {self._id}, name:{self._name}, email:{self._email}, password:{self._password})'

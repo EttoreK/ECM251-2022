@@ -1,15 +1,12 @@
 import streamlit as st
 from sistema import Sistema
-# from src.controllers.cart_controller import CarrController
-# from src.controllers.item_controller import ItemController
-# from src.controllers.user_controller import UserController
+
+stm = Sistema()
+stm.comeco()
 
 # with open("./css/style.css") as f:
 # 	st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 # st.set_page_config(page_title="", page_icon="")
-
-stm = Sistema()
-stm.comeco()
 
 tab1, tab2, tab3 = st.tabs(["Início", "Perfil", "Carrinho"])
 
@@ -20,7 +17,7 @@ with tab1:
 	if stm.verifica_adm():
 		c_exp = st.expander("Adicionar Produto", expanded=False)
 		c_exp.header("Adicionar Produto")
-		id = c_exp.text_input(
+		prod_id = c_exp.text_input(
 			label="Id",
 			placeholder="Id específico?",
 			value = "",
@@ -33,11 +30,10 @@ with tab1:
 		)
 		preco = c_exp.number_input(
 			label="Preco",
-			# placeholder="Preco do produto",
 			label_visibility= "hidden",
 			value = 0.00
 		)
-		c_exp.button(label = "Adicionar produto", key = stm.get_key(), on_click = Sistema.add_produto_db, args = (stm, id, nome, preco))
+		c_exp.button(label = "Adicionar produto", key = stm.get_key(), on_click = Sistema.add_produto_db, args = (stm, prod_id, nome, preco))
 
 	# mostruario
 	st.markdown("###### Pókemon")
@@ -48,15 +44,14 @@ with tab1:
 	with col2:
 		st.markdown("#### mais de 1000 episódios para assistir")
 	with col3:
-		prdct = stm.pega_item("SQL") # ItemC.pegar_item('SQL')
+		prdct = stm.pega_item("PKM")
 		c = st.container()
-		# c.button(label = "Adicionar", key = stm.get_key(), on_click = CarrController.add_prod, args = (st.session_state['Carr'],prdct))
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_carr, args = (st.session_state['Carr'], prdct))
 
 	col1, col2, col3 = st.columns(3,gap="large")
 	
 	with col1:
-		prdct = stm.pega_item("BDE") # ItemC.pegar_item('BDE')
+		prdct = stm.pega_item("YGO")
 		c = st.container()
 		c.markdown("###### Yu-Gi-Oh! Duel Monsters")
 		c.image("imgs/ygo.jpg", width=200)
@@ -65,7 +60,7 @@ with tab1:
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_carr, args = (st.session_state['Carr'], prdct))
 			
 	with col2:
-		prdct = stm.pega_item("ABC") # ItemC.pegar_item('ABC')
+		prdct = stm.pega_item("BNH")
 		c = st.container()
 		c.markdown("###### My hero Academia")
 		c.image("imgs/mha.jpg", width=200)
@@ -74,7 +69,7 @@ with tab1:
 		c.button(label = "Adicionar", key = stm.get_key(), on_click = stm.add_produto_carr, args = (st.session_state['Carr'], prdct))
 
 	with col3:
-		prdct = stm.pega_item("CAF") # ItemC.pegar_item('CAF')
+		prdct = stm.pega_item("DGM")
 		c = st.container()
 		c.markdown("###### Digimon")
 		c.image("imgs/dgm.jpg", width=200)
@@ -100,7 +95,6 @@ with tab2:
 		if not st.session_state["Cadastro"]:
 			col1, col2 = st.columns(2)
 			with col1:
-				# st.button(label= "Entrar", key = stm.get_key(), on_click= UserController.check_login, args = (UserC,user,password))
 				st.button(label= "Entrar", key = stm.get_key(), on_click= Sistema.verifica_login, args = (stm,user,password))
 			with col2:
 				st.button(label= "Cadastrar", key = stm.get_key(), on_click= stm.inverte_estado_cadastro)
@@ -116,7 +110,7 @@ with tab2:
 				label_visibility="hidden",
 				placeholder="Email"
 			)
-			# st.button(label= "Criar conta", key = stm.get_key(), on_click= UserController.cadastrar, args = (UserC,user,password,password2,email))
+
 			st.button(label= "Criar conta", key = stm.get_key(), on_click= Sistema.realiza_cadastro, args = (stm,user,password,password2,email))
 			if st.session_state["Estado_Cadastro"] == "Senha_Dispar":
 				st.error("As senhas devem ser iguais")
@@ -125,7 +119,6 @@ with tab2:
 			elif st.session_state["Estado_Cadastro"] == "Email_Ig":
 				st.error("Esse email já foi cadastrado")
 			elif st.session_state["Estado_Cadastro"] == "Concluido":
-				# UserC.check_login(user,password)
 				stm.verifica_login(user, password)
 	else:
 		st.header("Perfil")
@@ -139,7 +132,30 @@ with tab2:
 			st.markdown(f"### Nome:\n{st.session_state['Usuario']}")
 			st.markdown(f"### Email:\n{st.session_state['Email']}")
 		
-		# st.button(label= "Sair", key = stm.get_key(), on_click= UserController.logout, args=(UserC, st.session_state['Carr']))
+		c_exp = st.expander("Alterar dados", expanded=False)
+		c_exp.header("Preencha para alterar os dados")
+		nome_usu = c_exp.text_input(
+			label="Novo nome",
+			placeholder="Novo nome",
+			label_visibility= "hidden"
+		)
+		email_usu = c_exp.text_input(
+			label="Novo email",
+			placeholder="Novo email",
+			label_visibility= "hidden"
+		)
+		senha_usu = c_exp.text_input(
+			label="Nova senha",
+			placeholder="Nova senha",
+			label_visibility= "hidden"
+		)
+		senha_usu2 = c_exp.text_input(
+			label="Nova senha",
+			placeholder="confirmar nova senha",
+			label_visibility= "hidden"
+		)
+
+		c_exp.button(label = "Aplicar alteracoes", key = stm.get_key(), on_click = Sistema.altera_usuario, args = (stm, nome_usu, email_usu, senha_usu, senha_usu2))
 		st.button(label= "Sair", key = stm.get_key(), on_click= stm.sair)
 
 with tab3:
@@ -150,16 +166,14 @@ with tab3:
 		col1.markdown("##### Produto")
 		col2.markdown("##### Preço")
 		col3.markdown("##### Excluir\n\n\n")
-		# prods = st.session_state['Carr'].get_prod()
 		prods = stm.pega_produtos_carrinho()
 		if prods != None:
 			with row:
 				for item in prods:
-					col1.markdown("#### %s" % stm.pega_prod_nome(item)) #i.get_name()
-					col2.markdown("#### R\$ %.2f" % stm.pega_prod_preco(item)) #i.get_price()
-					# col3.button(label= "Remover", key = stm.get_key() , on_click=CarrController.tira_prod , args=(st.session_state['Carr'],i.get_name()))
-					col3.button(label= "Remover", key = stm.get_key() , on_click= stm.remove_produto_carrinho , args=(st.session_state['Carr'], item)) #item.get_name()
+					col1.markdown("#### %s" % stm.pega_prod_nome(item))
+					col2.markdown("#### R\$ %.2f" % stm.pega_prod_preco(item))
+					col3.button(label= "Remover", key = stm.get_key() , on_click= stm.remove_produto_carrinho , args=(st.session_state['Carr'], item))
 
 		col1, col2 = st.columns(2)
 		col1.markdown("### Preço Total:")
-		col2.markdown("### R\$ %.2f" % stm.preco_total()) # st.session_state['Carr'].ttl_cust()
+		col2.markdown("### R\$ %.2f" % stm.preco_total())

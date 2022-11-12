@@ -34,6 +34,9 @@ class UserController():
 
     def logout(self, kart) -> None:
         st.session_state["Login"] = "negado"
+        st.session_state["Usuario"] = ""
+        st.session_state["Email"] = ""
+        st.session_state['Id'] = ""
         kart.get_carr().limpa_carr()
     
     def cadastrar(self, name, senha, senha2, email) -> bool:
@@ -46,3 +49,12 @@ class UserController():
             return retorno
         retorno = UserDAO.get_instance().novo_usu(name, senha, email)
         return retorno
+    
+    def usuario_atual(self) -> User:
+        return UserDAO.get_instance().pegar_user(st.session_state['Id'])
+    
+    def usuario_fantasma(self, id_usu, nome, senha, email) -> User:
+        return User(id_usu, nome, email, senha)
+
+    def alterar_usuario(self, user) -> bool:
+        return UserDAO.get_instance().atualizar_user(user)

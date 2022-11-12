@@ -15,10 +15,10 @@ class UserDAO:
             cls._instance = UserDAO()
         return cls._instance
 
-    def _connect(self):
+    def _connect(self) -> None:
         self.conn = sqlite3.connect('./db/atvsql.db', check_same_thread=False)
 
-    def get_all(self):
+    def get_all(self) -> list:
         self.cursor = self.conn.cursor()
         self.cursor.execute("""
             SELECT * FROM Clientes;
@@ -29,20 +29,11 @@ class UserDAO:
         self.cursor.close()
         return resultados
 
-    def inserir_user(self, user):
-        self.cursor = self.conn.cursor()
-        self.cursor.execute("""
-            INSERT INTO Clientes(email, nome, senha)
-            Values(?,?,?);
-        """, (user.email, user.nome, user.password))
-        self.conn.commit()
-        self.cursor.close()
-
-    def pegar_user(self, email):
+    def pegar_user(self, id_usu) -> User:
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
             SELECT * FROM Clientes
-            WHERE email = '{email}';
+            WHERE id_cliente = '{id_usu}';
         """)
         user  = None
         resultado = self.cursor.fetchone()
@@ -51,22 +42,23 @@ class UserDAO:
         self.cursor.close()
         return user
 
-    def atualizar_user(self, user):
+    def atualizar_user(self, user) -> bool:
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
                 UPDATE Clientes SET
-                name = '{user.name}',
-                senha = {user.password}
-                WHERE email = '{user.email}'
-            """)
+                    nome = ?,
+                    senha = ?,
+                    email = ?
+                WHERE id_cliente = ?
+            """, (user.get_name(), user.get_password(), user.get_email(), user.get_id()))
             self.conn.commit()
             self.cursor.close()
         except:
             return False
         return True
     
-    def deletar_user(self, email):
+    def deletar_user(self, email) -> bool:
         try:
             self.cursor = self.conn.cursor()
             self.cursor.execute(f"""
@@ -79,7 +71,7 @@ class UserDAO:
             return False
         return True
     
-    def search_all_for_name(self, name):
+    def search_all_for_name(self, name) -> list:
         self.cursor = self.conn.cursor()
         self.cursor.execute(f"""
             SELECT * FROM Clientes
