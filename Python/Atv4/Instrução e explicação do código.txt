@@ -1,0 +1,11 @@
+Todos os elementos do T3 foram implemtendos
++ Arquivo sistema para acessar os controllers
++ banco de dados
+- CSS (bug)
+
+Para adicionar um produto log como administrador:
+U: Ademir / S: admadm
+e vá para a aba "Início"
+
+É possível cadastrar novo usuário na aba perfil e,
+após cadastro, alterar o mesmo usuário

@@ -5,6 +5,7 @@ from src.controllers.item_controller import ItemController
 class PedidoController:
     def __init__(self) -> None:
         pass
+    
 
     def total_pedido(self, numero_pedido) -> float:
         items_pedido = PedidoDAO.get_instance().pegar_pedido(numero_pedido)
